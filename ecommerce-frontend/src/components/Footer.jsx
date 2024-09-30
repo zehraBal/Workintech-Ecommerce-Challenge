@@ -7,12 +7,12 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="w-screen flex flex-col  bg-slate-600">
-      <div className="w-full ">
-        <div className="w-[500px]">
+    <footer className="w-screen flex flex-col ">
+      <div className="w-full flex justify-evenly">
+        <div className="w-auto">
           <h3>BrandName</h3>
         </div>
-        <div className="w-[500px]">
+        <div className="w-auto flex gap-3">
           <div>
             <FontAwesomeIcon
               icon={faFacebook}
@@ -36,8 +36,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="w-full">
-        <div>
+      <div className="w-full flex justify-between">
+        <div className="flex flex-col text-start">
           <h5>Company Info</h5>
           <ul>
             <li>About Us</li>
@@ -46,7 +46,7 @@ export default function Footer() {
             <li>Blog</li>
           </ul>
         </div>
-        <div>
+        <div className="flex flex-col text-start">
           <h5>Legal</h5>
           <ul>
             <li>About Us</li>
@@ -55,7 +55,7 @@ export default function Footer() {
             <li>Blog</li>
           </ul>
         </div>
-        <div>
+        <div className="flex flex-col text-start">
           <h5>Features</h5>
           <ul>
             <li>Bussiness Marketing</li>
@@ -64,7 +64,7 @@ export default function Footer() {
             <li>Unlimited Support</li>
           </ul>
         </div>
-        <div>
+        <div className="flex flex-col text-start">
           <h5>Resources</h5>
           <ul>
             <li>IOS & Android</li>
@@ -73,11 +73,11 @@ export default function Footer() {
             <li>API</li>
           </ul>
         </div>
-        <div>
+        <div className="flex flex-col text-start">
           <h5>Get In Touch</h5>
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full text-start">
         <h6>Made With Love By Figmaland All Right Reserved</h6>
       </div>
     </footer>
