@@ -15,7 +15,11 @@ module.exports = {
       sm: { max: "770px" },
       // => @media (max-width: 639px) { ... }
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "contact-bg": "url('/images/carousel.png')",
+      },
+    },
   },
   plugins: [],
 };
