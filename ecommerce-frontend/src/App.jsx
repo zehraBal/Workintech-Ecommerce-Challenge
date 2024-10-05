@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Contact from "./pages/Contact";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Pricing from "./pages/Pricing";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/contact" Component={Contact} />
+        <Route exact path="/pricing" Component={Pricing} />
       </Routes>
       <Footer />
     </BrowserRouter>

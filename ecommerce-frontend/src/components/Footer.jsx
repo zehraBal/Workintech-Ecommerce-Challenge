@@ -41,7 +41,7 @@ export default function Footer() {
       <div className="w-full flex justify-between py-[50px] sm:flex-col sm:gap-[30px]">
         <div className="flex flex-col text-start leading-6 space-y-5 font-bold">
           <h5>Company Info</h5>
-          <ul className="space-y-5 text-[#737373]">
+          <ul className="space-y-5 text-[#737373] p-0">
             <li>About Us</li>
             <li>Carrier</li>
             <li>We are hiring</li>
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col text-start leading-6 space-y-5 font-bold">
           <h5>Legal</h5>
-          <ul className="space-y-5 text-[#737373]">
+          <ul className="space-y-5 text-[#737373] p-0">
             <li>About Us</li>
             <li>Carrier</li>
             <li>We are hiring</li>
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col text-start leading-6 space-y-5 font-bold">
           <h5>Features</h5>
-          <ul className="space-y-5 text-[#737373]">
+          <ul className="space-y-5 text-[#737373] p-0">
             <li>Bussiness Marketing</li>
             <li>User Analytic</li>
             <li>Live Chat</li>
@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col text-start leading-6 space-y-5 font-bold">
           <h5>Resources</h5>
-          <ul className="space-y-5 text-[#737373] ">
+          <ul className="space-y-5 text-[#737373] p-0">
             <li>IOS & Android</li>
             <li>Carrier</li>
             <li>Watch a Demo</li>

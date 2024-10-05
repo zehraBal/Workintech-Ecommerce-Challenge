@@ -79,3 +79,59 @@ h6 {
   font-weight: 700;
   color: #737373;
 }
+/* Switch styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #23a6f0;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.button-sm {
+  @apply w-28 h-11 rounded-[37px] px-5 py-3 gap-3 text-sm font-bold text-center leading-6;
+}
+.button-primary {
+  @apply w-[246px] h-[52px] rounded-[5px] px-10 py-[15px] gap-[10px] font-bold text-sm leading-[22px] text-center;
+}
+
+.pricing-border {
+  @apply border border-solid border-[#23A6F0] rounded-[10px];
+}
