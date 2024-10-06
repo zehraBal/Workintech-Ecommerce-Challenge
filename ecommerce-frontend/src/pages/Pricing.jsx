@@ -12,20 +12,22 @@ export default function Pricing() {
 
   return (
     <div className="w-screen flex justify-center items-center">
-      <div className="max-w-6xl flex flex-col items-center">
+      <div className="max-w-6xl flex flex-col items-center gap-12 ">
         {/* Title and Description */}
-        <div className="w-[625px] flex flex-col items-center text-center justify-evenly">
+        <div className=" max-w-[625px] flex flex-col items-center text-center justify-evenly">
           <h2 className="text-[40px] leading-[50px] font-bold text-[#252B42]">
             Pricing
           </h2>
-          <p className="text-[#737373]">
-            Problems trying to resolve the conflict between <br />
-            the two major realms of Classical physics: Newtonian mechanics
-          </p>
+          <div className="min-w-[262px] max-w-[469px]">
+            <p className="text-[#737373] ">
+              Problems trying to resolve the conflict between the two major
+              realms of Classical physics: Newtonian mechanics
+            </p>
+          </div>
         </div>
 
         {/* Toggle Switch */}
-        <div className="flex items-center justify-evenly w-[310px] h-[44px] gap-4 font-bold text-[#252B42] text-lg">
+        <div className="flex items-center justify-evenly min-w-[310px] h-[44px] gap-4 font-bold text-[#252B42] text-lg">
           <div>Monthly</div>
           <label className="switch">
             <input type="checkbox" checked={isYearly} onChange={handleToggle} />
@@ -33,14 +35,14 @@ export default function Pricing() {
           </label>
           <div>Yearly</div>
           {isYearly && (
-            <button className="button-sm bg-[#B2E3FF] text-[#23A6F0]">
+            <button className="button-sm bg-[#B2E3FF] text-[#23A6F0] text-sm ">
               Save 25%
             </button>
           )}
         </div>
 
         {/* Pricing Cards */}
-        <div className="flex items-end gap-1">
+        <div className="flex items-end sm:flex-col sm:items-center sm:justify-between sm:gap-8">
           <PricingCardFree isYearly={isYearly} />
           <StandartPricingCard isYearly={isYearly} />
           <PremiumPricingCard isYearly={isYearly} />

@@ -9,7 +9,6 @@ import Pricing from "./pages/Pricing";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route exact path="/contact" Component={Contact} />
         <Route exact path="/pricing" Component={Pricing} />

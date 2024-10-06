@@ -1,8 +1,8 @@
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export default function PremiumPricingCard() {
+export default function PremiumPricingCard({ isYearly }) {
   return (
-    <div className="w-[327px] h-[664px] pricing-border flex flex-col items-center justify-evenly">
+    <div className="w-[327px] h-[664px] pricing-border flex flex-col items-center justify-evenly ml-1 sm:ml-0">
       <h3>PREMIUM</h3>
       <h5 className="text-[#737373]">
         Organize across all <br />
@@ -11,11 +11,14 @@ export default function PremiumPricingCard() {
       {/*price*/}
       <div className="w-[190px] h-14 gap-2 text-[#23A6F0] font-bold flex items-center justify-center">
         <div className="w-[104-px] h-[50px]  leading-[50px] text-4xl ">
-          19.99
+          {isYearly ? "179.91" : "19.99"}
         </div>
         <div className="w-[76px]">
           <div className="w-4 h-8 text-2xl">$</div>
-          <div className="w-full h-6 text-sm">Per Month</div>
+          <div className="w-full h-6 text-sm">
+            {" "}
+            {isYearly ? "Per Year" : "Per Month"}
+          </div>
         </div>
       </div>
       {/*list*/}
