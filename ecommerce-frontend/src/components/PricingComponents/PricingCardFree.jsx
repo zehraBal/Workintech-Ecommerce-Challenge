@@ -58,7 +58,7 @@ export default function PricingCardFree({ isYearly }) {
         </div>
       </div>
       <div>
-        <button className="button-primary bg-[#252B42] text-white">
+        <button className="button-primary bg-[#252B42] text-white hover:bg-[#1F2538]">
           Try for free
         </button>
       </div>

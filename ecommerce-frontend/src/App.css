@@ -124,14 +124,112 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
+.contact-bg {
+  width: 100vw;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.contact-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 700px;
+}
 
+.contactbg-img {
+  position: absolute;
+  right: 80px;
+  top: 0;
+  width: 571px;
+  height: 700px;
+}
+.bgImg {
+  width: 571px;
+  height: 100%;
+  object-fit: cover;
+}
+.circle {
+  position: absolute;
+  right: 130px;
+  top: 50px;
+  width: 484px;
+  height: 484px;
+  background-color: #ffe9ea;
+  border-radius: 100%;
+}
+.small-circle {
+  width: 78px;
+  height: 78px;
+  border-radius: 100%;
+  background-color: #ffe9ea;
+  position: absolute;
+  top: 50px;
+  right: 600px;
+}
+.smaller-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #ffe9ea;
+  position: absolute;
+  top: 300px;
+  right: 90px;
+}
+
+.purple-circle {
+  width: 15px;
+  height: 15px;
+  background-color: #977df4;
+  border-radius: 100%;
+  position: absolute;
+  right: 90px;
+  top: 130px;
+}
+.purple-circle-bottom {
+  width: 15px;
+  height: 15px;
+  background-color: #977df4;
+  border-radius: 100%;
+  position: absolute;
+  right: 650px;
+  top: 380px;
+}
+.content-section {
+  width: 50vw;
+  height: 100vh;
+  position: absolute;
+  top: 58px;
+  left: 0;
+  text-align: center;
+}
+
+.arrow-right {
+  width: 9px;
+  height: 9px;
+  border: solid #bdbdbd;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(-45deg);
+}
 .button-sm {
   @apply w-28 h-11 rounded-[37px] px-5 py-3 gap-3 text-sm font-bold text-center leading-6;
 }
 .button-primary {
-  @apply w-[246px] h-[52px] rounded-[5px] px-10 py-[15px] gap-[10px] font-bold text-sm leading-[22px] text-center;
+  @apply w-[246px] h-[52px] rounded-[5px] px-10 py-[15px] gap-[10px] font-bold text-sm leading-[22px] text-center hover:bg-[#1D91D0];
 }
 
 .pricing-border {
   @apply border border-solid border-[#23A6F0] rounded-[10px];
+}
+.button-primary-round {
+  @apply w-48 h-14 rounded-[37px] border border-[#23A6F0] border-solid text-[#23A6F0] px-9 py-[15px] text-sm;
+}
+
+.footer-line {
+  @apply border-t border-solid border-[#E6E6E6] sm:hidden;
 }
