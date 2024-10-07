@@ -134,14 +134,14 @@ input:checked + .slider:before {
 .contact-img {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 100px;
   width: 50vw;
   height: 700px;
 }
 
 .contactbg-img {
   position: absolute;
-  right: 80px;
+  right: 180px;
   top: 0;
   width: 571px;
   height: 700px;
@@ -204,6 +204,19 @@ input:checked + .slider:before {
   top: 58px;
   left: 0;
   text-align: center;
+}
+.aboutbg-img {
+  position: absolute;
+  right: 180px;
+  top: 0;
+  width: 571px;
+  height: 668px;
+}
+.abtImg {
+  position: relative;
+  width: 571px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .arrow-right {
