@@ -10,7 +10,7 @@ export default function PricingDetails() {
   };
 
   return (
-    <div className="w-screen flex justify-center items-center ">
+    <div className="w-screen flex justify-center items-center bg-[#FAFAFA]">
       <div className="max-w-6xl flex flex-col items-center gap-12 py-[112px]">
         {/* Title and Description */}
         <div className=" max-w-[625px] flex flex-col items-center text-center justify-evenly">

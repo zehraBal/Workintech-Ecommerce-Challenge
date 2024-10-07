@@ -11,7 +11,7 @@ export default function PricingHeader() {
           >
             Home
           </a>
-          <i class="arrow-right"></i>
+          <i className="arrow-right"></i>
           <a
             className=" text-sm no-underline text-[#737373] font-bold"
             href="/Pricing"
