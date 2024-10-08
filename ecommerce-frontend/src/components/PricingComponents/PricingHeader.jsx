@@ -1,7 +1,7 @@
 export default function PricingHeader() {
   return (
-    <div className="w-screen flex item justify-center">
-      <div className="w-[427px] h-[200px] gap-4 flex flex-col items-center justify-start font-bold text-center text-[#252B42]">
+    <div className="flex items-center justify-center">
+      <div className="w-[30%]  gap-4 flex flex-col items-center justify-start font-bold text-center text-[#252B42] py-[50px]">
         <div className="text-base">PRICING </div>
         <div className="text-[58px] leading-[80px]">Simple Pricing</div>
         <div className="flex gap-4 ">

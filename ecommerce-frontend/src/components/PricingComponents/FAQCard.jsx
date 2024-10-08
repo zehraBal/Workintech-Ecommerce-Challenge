@@ -1,7 +1,7 @@
 export default function FAQCard() {
   return (
-    <div className="w-[491px] h-full p-6 rounded-lg flex items-start gap-4">
-      <div>
+    <div className="p-6 rounded-lg flex items-start justify-between gap-4">
+      <div className="sm:hidden">
         <i className="arrow-right-blue"></i>
       </div>
       <div className="flex flex-col">

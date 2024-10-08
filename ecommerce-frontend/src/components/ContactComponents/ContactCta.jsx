@@ -6,7 +6,7 @@ export default function ContactCta() {
     navigate("/pricing");
   };
   return (
-    <div className="w-screen flex items-center justify-center">
+    <div className="w-screen flex items-center justify-center flex-wrap">
       <div className="w-[1050px] flex items-center justify-center">
         <div className="w-[607px] font-bold text-[#252B42] flex flex-col items-center gap-9 pb-[100px]">
           <div>

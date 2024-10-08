@@ -7,12 +7,15 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-export default function ContactHead() {
+export default function ContactHeadOld() {
   return (
-    <div className="w-screen h-screen flex">
-      <div className="contact-bg">
+    <header className="w-screen h-[800px] relative flex flex-wrap">
+      <HeaderNav />
+      <div className="contact-bg ">
         <div className="contact-img">
-          <div className="circle"></div>
+          <div className="circle-div">
+            <div className="circle"></div>
+          </div>
           <div className="small-circle"></div>
           <div className="smaller-circle"></div>
           <div className="purple-circle"></div>
@@ -57,6 +60,6 @@ export default function ContactHead() {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

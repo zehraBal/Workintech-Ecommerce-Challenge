@@ -1,7 +1,7 @@
 export default function Stats() {
   return (
-    <section className="w-screen flex items-center justify-center">
-      <div className="w-3/4 flex gap-[30px] py-[80px] items-center justify-center">
+    <section className="flex flex-wrap items-center justify-center sm:flex-col sm:py-[100px]">
+      <div className="basis-[75%] flex gap-[50px] py-[80px] items-center justify-between flex-wrap sm:justify-center">
         <div className="w-[238px] text-center">
           <h1 className="text-[58px] leading-[80px] font-bold text-[#252B42]">
             15K

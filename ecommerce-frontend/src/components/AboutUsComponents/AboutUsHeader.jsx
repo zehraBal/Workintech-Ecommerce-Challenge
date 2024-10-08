@@ -1,43 +1,36 @@
-import HeaderNav from "../HeaderNav";
-
 export default function AboutUsHeader() {
   return (
-    <header className="w-screen h-screen relative  ">
-      <HeaderNav />
-      <div className="contact-bg">
-        <div className="contact-img">
-          <div className="circle"></div>
-          <div className="small-circle"></div>
-          <div className="smaller-circle"></div>
-          <div className="purple-circle"></div>
-          <div className="purple-circle-bottom"></div>
-        </div>
-        <div className="aboutbg-img">
-          <img className="abtImg" src="/images/about.png" alt="" />
-        </div>
-      </div>
-      <div className="w-[1050px]] py-[112px] gap-[80px]  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="w-full gap-8 flex items-center ">
-          <div className="w-[600px] flex flex-col items-strecth gap-9">
-            <div className="font-bold text-base text-[#252B42]">
-              ABOUT COMPANY
-            </div>
-            <div className="font-bold text-[58px] leading-[80px] text-[#252B42]">
-              ABOUT US
-            </div>
-            <div className="font-bold text-xl text-[#737373]">
-              We know how large objects will act, <br />
-              but things on a small scale
-            </div>
-            <div>
-              <button className="button-primary bg-[#23A6F0] text-white">
-                Get Quote Now
-              </button>
-            </div>
+    <section className="flex flex-wrap justify-center items-center pb-10 sm:flex-col ">
+      <div className="flex sm:flex-col justify-between items-center basis-[85%] gap-16 py-[112px] sm:py-[80px]">
+        <article className="flex flex-col items-start justify-center gap-8 relative basis-[45%] sm:w-3/4  sm:items-center sm:text-center  sm:basis-full w-full">
+          <h5 className="font-bold text-headerColor">ABOUT COMPANY</h5>
+          <h1 className="font-bold text-[58px] leading-[80px] text-secondTextColor">
+            ABOUT US
+          </h1>
+          <h4 className="text-[#737373] font-bold text-[20px] leading-[30px]">
+            We know how large objects will act,
+            <br /> but things on a small scale
+          </h4>
+          <div>
+            <button className="button-primary bg-[#23A6F0] text-white">
+              Get Quote Now
+            </button>
           </div>
-          <div className="w-[415px]"></div>
-        </div>
+        </article>
+
+        <article className="relative basis-[45%] min-h-[700px] sm:basis-full sm:min-h-[500px]">
+          <img
+            className="min-w-[400px] min-h-[600px] sm:min-w-[300px] sm:min-h-[400px]  object-cover"
+            src="/images/about.png"
+            alt="Contact"
+          />
+          <div className="bg-[#977DF4] w-[3%] aspect-square rounded-full absolute left-[-1%] bottom-[40%]"></div>
+          <div className="bg-[#977DF4] w-[3%] aspect-square rounded-full absolute right-0 top-[22%]"></div>
+          <div className="bg-[#FFE9EA] w-[6%] aspect-square rounded-full absolute right-[2%] top-[38%]"></div>
+          <div className="bg-[#FFE9EA] w-[14%] aspect-square rounded-full absolute left-[-6%] top-[5%]"></div>
+          <div className="bg-[#FFE9EA] w-[85%] aspect-square rounded-full absolute left-[5%] top-0 z-[-1]"></div>
+        </article>
       </div>
-    </header>
+    </section>
   );
 }

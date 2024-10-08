@@ -1,81 +1,37 @@
 export default function ContactHeader() {
   return (
-    <div
-      className="relative bg-cover  min-h-svh  "
-      style={{
-        backgroundImage: 'url("/images/carousel.png")',
-        backgroundPositionY: "20%",
-        backgroundRepeat: "no-repeat",
-        //  backgroundOrigin: "border-box",
-      }}
-    >
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(89.85deg, #000000 0.13%, #000000 0.14%, rgba(0, 0, 0, 0) 100%)",
-        }}
-      ></div>
-      <div className="relative flex justify-center items-stretch gap-8 sm:flex-col max-w-6xl mx-auto py-28 px-4 md:px-8 text-white">
-        {/* Left Side - Contact Info */}
-        <div className="min-w-[497px] flex flex-col  items-center justify-center space-y-8 text-left">
-          <div className="flex flex-col gap-9 sm:items-center sm:text-center">
-            <div>
-              <h2 className="font-bold text-left">CONTACT US</h2>
-            </div>
-            <div>
-              <p className="text-sm">
-                Problems trying to resolve the conflict between <br /> the two
-                major realms of Classical physics: <br />
-                Newtonian mechanics.
-              </p>
-            </div>
-            <div>
-              <button className="bg-[#23A6F0] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Contact Us
-              </button>
-            </div>
-          </div>
-        </div>
+    <section className="flex flex-wrap justify-center items-center py-10 sm:flex-col">
+      <div className="flex sm:flex-col justify-between items-center basis-[85%] gap-16 py-[112px] w-full sm:py-[60]">
+        <article className="flex flex-col items-start justify-center gap-8 relative basis-[45%] sm:w-3/4  sm:items-center sm:text-center  sm:basis-full w-full">
+          <h5 className="font-bold text-headerColor">CONTACT US</h5>
+          <h5 className="font-bold text-headerColor text-6xl leading-[80px]">
+            Get in touch today!
+          </h5>
+          <h4 className="font-normal text-xl text-secondTextColor">
+            We know how large objects will act, but things on a small scale
+          </h4>
+          <h3 className="text-headerColor font-bold text-2xl">
+            Phone : +451 215 215
+          </h3>
+          <h3 className="text-headerColor font-bold text-2xl">
+            Fax : +451 215 215
+          </h3>
+          <div className="flex items-center text-headerColor text-3xl justify-center"></div>
+        </article>
 
-        {/* Right Side - Locations */}
-        <div className="min-w-[250px] flex flex-col gap-2 items-start justify-center sm:items-center ">
-          <div className="p-6 space-y-4 ">
-            <h3 className="font-bold ">Paris</h3>
-            <p className="text-xl">1901 Thorn ridge Cir.</p>
-            <div className=" w-[58px] border-b-2 border-solid border-[#23A6F0]"></div>
-            <p>75000 Paris</p>
-            <p>Phone: +451 215 215</p>
-            <p>Fax: +451 215 215</p>
-          </div>
-          <div className="p-6 space-y-4 sm:pr-16">
-            <h3 className="font-bold ">Berlin</h3>
-            <p className="text-xl">4140 Parker Rd.</p>
-            <div className=" w-[58px] border-b-2 border-solid border-[#23A6F0]"></div>
-            <p>75000 Paris</p>
-            <p>Phone: +451 215 215</p>
-            <p>Fax: +451 215 215</p>
-          </div>
-        </div>
-        <div className="min-w-[250px] flex flex-col gap-2 items-start sm:items-center">
-          <div className="p-6 space-y-4">
-            <h3 className="font-bold ">New York</h3>
-            <p className="text-xl">2715 Ash Dr. San Jose,</p>
-            <div className=" w-[58px] border-b-2 border-solid border-[#23A6F0]"></div>
-            <p>75000 Paris</p>
-            <p>Phone: +451 215 215</p>
-            <p>Fax: +451 215 215</p>
-          </div>
-          <div className="p-6 space-y-4">
-            <h3 className="font-bold ">London</h3>
-            <p className="text-xl">3517 W. Gray St. Utica,</p>
-            <div className=" w-[58px] border-b-2 border-solid border-[#23A6F0]"></div>
-            <p> 75000 Paris</p>
-            <p>Phone: +451 215 215</p>
-            <p>Fax: +451 215 215</p>
-          </div>
-        </div>
+        <article className="relative basis-[45%] min-h-[700px] sm:basis-full sm:min-h-[500px]">
+          <img
+            className="min-w-[500px] min-h-[700px] sm:min-w-[300px] sm:min-h-[500px]  object-cover"
+            src="/images/contact.png"
+            alt="Contact"
+          />
+          <div className="bg-[#977DF4] w-[3%] aspect-square rounded-full absolute left-[-1%] bottom-[40%]"></div>
+          <div className="bg-[#977DF4] w-[3%] aspect-square rounded-full absolute right-0 top-[22%]"></div>
+          <div className="bg-[#FFE9EA] w-[6%] aspect-square rounded-full absolute right-[2%] top-[38%]"></div>
+          <div className="bg-[#FFE9EA] w-[14%] aspect-square rounded-full absolute left-[-6%] top-[5%]"></div>
+          <div className="bg-[#FFE9EA] w-[85%] aspect-square rounded-full absolute left-[5%] top-0 z-[-1]"></div>
+        </article>
       </div>
-    </div>
+    </section>
   );
 }

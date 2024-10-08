@@ -13,9 +13,9 @@ export default function PricingCta() {
     navigate("/pricing");
   };
   return (
-    <section className="w-screen flex items-center justify-center">
-      <div className="w-[1050] flex items-center justify-center py-[160px]">
-        <div className="w-[607px] flex flex-col items-center justify-between gap-9">
+    <section className="flex flex-wrap items-center justify-center">
+      <div className="basis-[70%] flex items-center justify-center py-[160px] gap-[96px]">
+        <div className="w-3/5 flex  flex-col items-center justify-between gap-9">
           <div className="font-bold text-[40px] leading-[50px] text-center text-[#252B42]">
             Start your 14 days free trial
           </div>
