@@ -166,3 +166,7 @@ input:checked + .slider:before {
 .footer-line {
   @apply border-t border-solid border-[#E6E6E6] sm:hidden;
 }
+
+.a-gray {
+  @apply text-[#737373] no-underline;
+}
