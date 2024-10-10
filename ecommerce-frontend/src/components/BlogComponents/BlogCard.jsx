@@ -5,7 +5,7 @@ export default function BlogCard({ path }) {
   return (
     <div className="flex flex-col justify-center items-center w-[470px] sm:w-[330px]">
       <div className="w-full h-[300px] relative">
-        <div className="bg-[#E74040] text-white font-bold px-[10px] border border-solid border-transparent rounded-[3px] absolute top-5 left-5">
+        <div className="bg-[#E74040] text-white font-bold px-[10px]  rounded-[3px] absolute top-5 left-5">
           NEW
         </div>
         <img className="w-full h-full object-cover" src={path} alt="" />

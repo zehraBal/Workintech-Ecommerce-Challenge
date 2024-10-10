@@ -5,10 +5,12 @@ import VideoCard from "../components/AboutUsComponents/AboutUsVideoCard";
 import Content from "../components/AboutUsComponents/Content";
 import Stats from "../components/AboutUsComponents/Stats";
 import Testimonial from "../components/AboutUsComponents/Testimonial";
+import HeaderInnerNav from "../components/HeaderInnerNav";
 
 export default function AboutUs() {
   return (
     <>
+      <HeaderInnerNav />
       <AboutUsHeader />
       <Content />
       <Stats />
