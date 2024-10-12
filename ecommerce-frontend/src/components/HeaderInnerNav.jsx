@@ -16,8 +16,8 @@ export default function HeaderInnerNav() {
     navigate("/register");
   };
   return (
-    <header className="flex flex-wrap justify-center items-center sm:flex-col">
-      <div className=" basis-[70%] flex items-center justify-between py-4 sm:flex-col sm:w-full sm:basis-full sm:gap-6">
+    <div className="basis-[85%] flex flex-wrap justify-center items-center sm:flex-col">
+      <div className=" basis-full flex items-center justify-between py-4 sm:flex-col sm:w-full sm:basis-full sm:gap-6">
         <div className="sm:flex sm:justify-between sm:items-start sm:w-[60%]">
           <div className="text-[#252B42] text-start font-bold text-2xl">
             BrandName
@@ -44,6 +44,12 @@ export default function HeaderInnerNav() {
             <a className="a-gray font-bold  leading-6" href="/contact">
               Contact
             </a>
+            <a className="a-gray font-bold  leading-6" href="/team">
+              Team
+            </a>
+            <a className="a-gray font-bold  leading-6" href="/team">
+              Blog
+            </a>
           </nav>
           <nav className="flex items-center gap-[45px] justify-between sm:flex-col sm:gap-6">
             <a
@@ -63,6 +69,6 @@ export default function HeaderInnerNav() {
           </nav>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

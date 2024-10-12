@@ -8,7 +8,6 @@ import HeaderInnerNav from "../components/HeaderInnerNav";
 export default function Pricing() {
   return (
     <>
-      <HeaderInnerNav />
       <PricingHeader />
       <PricingDetails />
       <Clients />

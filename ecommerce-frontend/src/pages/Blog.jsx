@@ -4,7 +4,6 @@ import HeaderInnerNav from "../components/HeaderInnerNav";
 export default function Blog() {
   return (
     <>
-      <HeaderInnerNav />
       <BlogContent />
     </>
   );

@@ -1,6 +1,6 @@
 export default function ContactHeader() {
   return (
-    <section className="flex flex-wrap justify-center items-center py-10 sm:flex-col">
+    <section className="flex flex-wrap justify-center items-center  sm:flex-col">
       <div className="flex sm:flex-col justify-between items-center basis-[85%] gap-16 py-[112px] w-full sm:py-[60]">
         <article className="flex flex-col items-start justify-center gap-8 relative basis-[45%] sm:w-3/4  sm:items-center sm:text-center  sm:basis-full w-full">
           <h5 className="font-bold text-headerColor">CONTACT US</h5>

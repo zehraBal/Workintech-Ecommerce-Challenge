@@ -10,7 +10,6 @@ import HeaderInnerNav from "../components/HeaderInnerNav";
 export default function AboutUs() {
   return (
     <>
-      <HeaderInnerNav />
       <AboutUsHeader />
       <Content />
       <Stats />

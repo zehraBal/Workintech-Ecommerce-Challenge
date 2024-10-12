@@ -6,7 +6,6 @@ import HeaderInnerNav from "../components/HeaderInnerNav";
 export default function Contact() {
   return (
     <>
-      <HeaderInnerNav />
       <ContactHeader />
       <ContactDetail />
       <ContactCta />

@@ -7,7 +7,6 @@ import TeamMembers from "../components/TeamComponents.jsx/TeamMembers";
 export default function Team() {
   return (
     <>
-      <HeaderInnerNav />
       <TeamHeader />
       <TeamHero />
       <TeamMembers />
