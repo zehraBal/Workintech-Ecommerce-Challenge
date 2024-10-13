@@ -13,7 +13,7 @@ export default function HeaderNav() {
     setIsHidden(!isHidden);
   };
   const handleRegister = () => {
-    navigate("/register");
+    navigate("/signup");
   };
   return (
     <div className="basis-[85%] flex flex-wrap justify-center items-center sm:flex-col">

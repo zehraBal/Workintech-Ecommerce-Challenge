@@ -147,6 +147,29 @@ input:checked + .slider:before {
   transform: rotate(45deg);
   -webkit-transform: rotate(-45deg);
 }
+
+.spinner::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 20px;
+  width: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 3px solid lightgray;
+  border-top-color: blueviolet;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .button-sm {
   @apply rounded-[37px] px-5 py-3 gap-3 text-sm font-bold text-center leading-6;
 }
@@ -173,7 +196,7 @@ input:checked + .slider:before {
 }
 
 .contact-form-input {
-  @apply border border-solid border-[#E6E6E6] rounded-[5px] leading-7 py-[10px] px-[20px] hover:border-[#23A6F0];
+  @apply border border-solid border-[#E6E6E6] rounded-[5px] leading-7 py-[10px] px-[20px] hover:border-[#23A6F0] sm:text-xs;
 }
 
 .modal-header {

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify"; // Toastify import edildi
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const {
@@ -19,7 +19,11 @@ export default function LoginForm() {
       .post("https://workintech-fe-ecommerce.onrender.com/login", formData)
       .then((res) => {
         console.log("loginSucces");
-        navigate("/home");
+        if (window.history.length > 1) {
+          navigate(-1);
+        } else {
+          navigate("/");
+        }
         toast.success("Login successful!");
       })
       .catch((err) => {
@@ -40,12 +44,12 @@ export default function LoginForm() {
           <h2>Login</h2>
         </div>
         <div className="w-3/5 flex flex-col gap-2">
-          <label className="text-[#252B42] text-lg" htmlFor="email">
+          <label className="text-[#252B42] text-lg font-bold" htmlFor="email">
             Email Address*
           </label>
 
           <input
-            className="py-9 px-4 rounded-[5px] border border-solid border-[#E6E6E6] text-[#737373] text-xl"
+            className="contact-form-input text-[#737373] text-xl"
             type="email"
             placeholder="Email *"
             {...register("email", {
@@ -61,12 +65,15 @@ export default function LoginForm() {
           )}
         </div>
         <div className="w-3/5 flex flex-col gap-2">
-          <label className="text-[#252B42] text-lg" htmlFor="password">
+          <label
+            className="text-[#252B42] text-lg font-bold"
+            htmlFor="password"
+          >
             Password
           </label>
 
           <input
-            className="py-9 px-4  rounded-[5px] border border-solid border-[#E6E6E6] text-[#737373] text-xl"
+            className="contact-form-input text-[#737373] text-xl"
             type="password"
             placeholder="Password"
             {...register("password", {
@@ -77,9 +84,30 @@ export default function LoginForm() {
             <p className="text-[#23A6F0]">{errors.password.message}</p>
           )}
         </div>
+        <div className="flex gap-2">
+          <input
+            className="w-6 h-6 "
+            type="checkbox"
+            id="rememberMe"
+            name="rememberMe"
+            value={"Remember"}
+          />
+          <label
+            className="text-[#23A6F0] text-lg font-bold"
+            htmlFor="rememberMe"
+          >
+            Remember me
+          </label>
+        </div>
         <div>
           <button
-            className="button-primary bg-[#23A6F0] text-white text-xl"
+            className={`button-primary text-xl text-white
+              ${
+                isValid
+                  ? "bg-[#23A6F0] hover:bg-[#1e90ff]"
+                  : "bg-gray-400 hover:bg-gray-400 cursor-not-allowed"
+              }
+            `}
             type="submit"
             disabled={!isValid}
           >

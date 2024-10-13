@@ -41,8 +41,9 @@ export default function ContactCta() {
       <Modal isOpen={modal} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>
           <div className="flex flex-col justify-center items-center">
-            <h5 className="text-base">Contact Us</h5>
-            <h2 className="text-2xl">Make an Appointment</h2>
+            <h5 className="text-base sm:hidden">Contact Us</h5>
+            <h2 className="text-2xl sm:hidden">Make an Appointment</h2>
+            <h3 className="text-2xl lg:hidden">Book Appointment</h3>
           </div>
         </ModalHeader>
         <ModalBody>

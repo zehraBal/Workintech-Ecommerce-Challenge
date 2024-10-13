@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/FormComponents/LoginForm";
+import RegisterForm from "./components/FormComponents/RegisterForm";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route exact path="/team" Component={Team} />
         <Route exact path="/blog" Component={Blog} />
         <Route exact path="/login" Component={LoginForm} />
+        <Route exact path="/signup" Component={Register} />
       </Routes>
       <Footer />
       <ToastContainer />
