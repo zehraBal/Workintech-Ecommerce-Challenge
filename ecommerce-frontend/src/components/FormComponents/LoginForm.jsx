@@ -87,7 +87,7 @@ export default function LoginForm() {
           </button>
         </div>
 
-        <a className="a-gray hover:text-[#23A6F0]" href="/signin">
+        <a className="a-gray hover:text-[#23A6F0]" href="/register">
           Don't have an account yet? Register
         </a>
       </form>

@@ -1,10 +1,18 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import Contactform from "../FormComponents/ContactForm";
 
 export default function ContactCta() {
   const navigate = useNavigate();
-  const handleClick = () => {
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => setModal(!modal);
+
+  const handleNavigate = () => {
     navigate("/pricing");
   };
+
   return (
     <div className="w-screen flex items-center justify-center flex-wrap">
       <div className="w-[1050px] flex items-center justify-center">
@@ -20,7 +28,7 @@ export default function ContactCta() {
           </div>
           <div>
             <button
-              onClick={handleClick}
+              onClick={toggleModal}
               className="button-primary bg-[#23A6F0] text-white text-sm"
             >
               Try it free now
@@ -28,6 +36,19 @@ export default function ContactCta() {
           </div>
         </div>
       </div>
+
+      {/* Modal Section */}
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}>
+          <div className="flex flex-col justify-center items-center">
+            <h5 className="text-base">Contact Us</h5>
+            <h2 className="text-2xl">Make an Appointment</h2>
+          </div>
+        </ModalHeader>
+        <ModalBody>
+          <Contactform />
+        </ModalBody>
+      </Modal>
     </div>
   );
 }

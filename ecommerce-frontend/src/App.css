@@ -171,3 +171,19 @@ input:checked + .slider:before {
 .a-gray {
   @apply text-[#737373] no-underline;
 }
+
+.contact-form-input {
+  @apply border border-solid border-[#E6E6E6] rounded-[5px] leading-7 py-[10px] px-[20px] hover:border-[#23A6F0];
+}
+
+.modal-header {
+  position: relative;
+  justify-content: center;
+}
+.modal-header .btn-close {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
