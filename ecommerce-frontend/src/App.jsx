@@ -1,6 +1,5 @@
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Footer from "./components/LayoutComponents/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Contact from "./pages/Contact";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -14,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/FormComponents/LoginForm";
 import RegisterForm from "./components/FormComponents/RegisterForm";
 import Register from "./pages/Register";
+import Header from "./components/LayoutComponents/Header";
 
 function App() {
   return (

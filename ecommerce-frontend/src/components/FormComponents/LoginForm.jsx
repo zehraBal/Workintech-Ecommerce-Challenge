@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,10 +9,11 @@ export default function LoginForm() {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", password: "", rememberMe: false },
     mode: "all",
   });
   const navigate = useNavigate();
+  //const rememberMe = useWatch("rememberMe");
 
   const onSubmit = (formData) => {
     axios
@@ -60,9 +61,7 @@ export default function LoginForm() {
               },
             })}
           />
-          {errors.email && (
-            <p className="text-[#23A6F0]">{errors.email.message}</p>
-          )}
+          {errors.email && <p className="text-blue">{errors.email.message}</p>}
         </div>
         <div className="w-3/5 flex flex-col gap-2">
           <label
@@ -81,7 +80,7 @@ export default function LoginForm() {
             })}
           />
           {errors.password && (
-            <p className="text-[#23A6F0]">{errors.password.message}</p>
+            <p className="text-blue">{errors.password.message}</p>
           )}
         </div>
         <div className="flex gap-2">
@@ -92,19 +91,16 @@ export default function LoginForm() {
             name="rememberMe"
             value={"Remember"}
           />
-          <label
-            className="text-[#23A6F0] text-lg font-bold"
-            htmlFor="rememberMe"
-          >
+          <label className="text-blue text-lg font-bold" htmlFor="rememberMe">
             Remember me
           </label>
         </div>
         <div>
           <button
-            className={`button-primary text-xl text-white
+            className={`button-primary text-xl text-white bg-blue
               ${
                 isValid
-                  ? "bg-[#23A6F0] hover:bg-[#1e90ff]"
+                  ? ""
                   : "bg-gray-400 hover:bg-gray-400 cursor-not-allowed"
               }
             `}
@@ -115,7 +111,7 @@ export default function LoginForm() {
           </button>
         </div>
 
-        <a className="a-gray hover:text-[#23A6F0]" href="/register">
+        <a className="a-gray hover:text-blue" href="/register">
           Don't have an account yet? Register
         </a>
       </form>

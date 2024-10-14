@@ -1,4 +1,4 @@
-import HeaderInnerNav from "../components/HeaderInnerNav";
+import HeaderInnerNav from "../components/LayoutComponents/HeaderInnerNav";
 import TeamCta from "../components/TeamComponents.jsx/TeamCta";
 import TeamHeader from "../components/TeamComponents.jsx/TeamHeader";
 import TeamHero from "../components/TeamComponents.jsx/TeamHero";

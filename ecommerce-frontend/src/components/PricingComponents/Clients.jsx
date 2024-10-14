@@ -1,4 +1,4 @@
-import ClientCard from "../ClientCard";
+import ClientCard from "../LayoutComponents/ClientCard";
 
 export default function Clients() {
   return (

@@ -1,4 +1,4 @@
-import BreadCrumbs from "../BreadCrumbs";
+import BreadCrumbs from "../LayoutComponents/BreadCrumbs";
 
 export default function PricingHeader() {
   return (
