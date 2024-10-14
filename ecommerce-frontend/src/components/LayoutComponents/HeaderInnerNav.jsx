@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function HeaderNav() {
+export default function HeaderInnerNav() {
   const [isHidden, setIsHidden] = useState(true);
   const navigate = useNavigate();
   /*  useEffect(() => {
@@ -13,7 +13,7 @@ export default function HeaderNav() {
     setIsHidden(!isHidden);
   };
   const handleRegister = () => {
-    navigate("/signup");
+    navigate("/register");
   };
   return (
     <div className="basis-[85%] flex flex-wrap justify-center items-center sm:flex-col">
@@ -47,11 +47,11 @@ export default function HeaderNav() {
             <a className="a-gray font-bold  leading-6" href="/team">
               Team
             </a>
-            <a className="a-gray font-bold  leading-6" href="/team">
+            <a className="a-gray font-bold  leading-6" href="/blog">
               Blog
             </a>
           </nav>
-          <div className="flex items-center gap-[45px] justify-between sm:flex-col sm:gap-6">
+          <nav className="flex items-center gap-[45px] justify-between sm:flex-col sm:gap-6">
             <a
               className="text-[#23A6F0] no-underline font-bold  leading-6 "
               href="/login"
@@ -66,7 +66,7 @@ export default function HeaderNav() {
                 Sign Up
               </button>
             </div>
-          </div>
+          </nav>
         </div>
       </div>
     </div>
