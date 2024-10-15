@@ -1,5 +1,6 @@
 import {
   SET_CATEGORIES,
+  SET_FETCH_STATE,
   SET_FILTER,
   SET_LIMIT,
   SET_OFFSET,
@@ -54,5 +55,7 @@ export const productReducer = (state = initialProduct, action) => {
         ...state,
         filter: action.payload,
       };
+    default:
+      return state;
   }
 };

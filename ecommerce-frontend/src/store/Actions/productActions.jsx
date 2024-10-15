@@ -1,3 +1,5 @@
+import axiosInstance from "../../utils/axiosInstance";
+
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
 export const SET_TOTAL = "SET_TOTAL";
@@ -14,7 +16,7 @@ export const setProductList = (products) => ({
   type: SET_PRODUCT_LIST,
   payload: products,
 });
-export const setTotal = (ctotal) => ({
+export const setTotal = (total) => ({
   type: SET_TOTAL,
   payload: total,
 });
@@ -34,3 +36,42 @@ export const setFilter = (filter) => ({
   type: SET_FILTER,
   payload: filter,
 });
+// Action'ları import ediyoruz
+
+export const fetchProducts = () => {
+  return (dispatch) => {
+    dispatch(setFetchState("FETCHING")); // Fetch durumu başlatıldı
+
+    return axiosInstance // Axios isteğini buradan döndür
+      .get("/products")
+      .then((response) => {
+        const data = response.data;
+        console.log(data.products);
+        console.log(data.total);
+        dispatch(setProductList(data.products)); // Ürünleri kaydet
+        dispatch(setTotal(data.total)); // Toplam sayıyı kaydet
+        dispatch(setFetchState("FETCHED")); // Başarılı duruma geç*/
+      })
+      .catch((error) => {
+        dispatch(setFetchState("ERROR")); // Hata durumuna geç
+        console.error("Error fetching products: ", error);
+      });
+  };
+};
+export const fetchCategories = () => {
+  return (dispatch) => {
+    dispatch(setFetchState("FETCHING")); // Fetch durumu başlatıldı
+
+    return axiosInstance // Axios isteğini buradan döndür
+      .get("/categories")
+      .then((response) => {
+        const data = response.data;
+        dispatch(setCategories(data)); // Ürünleri kaydet
+        dispatch(setFetchState("FETCHED")); // Başarılı duruma geç*/
+      })
+      .catch((error) => {
+        dispatch(setFetchState("ERROR")); // Hata durumuna geç
+        console.error("Error fetching products: ", error);
+      });
+  };
+};

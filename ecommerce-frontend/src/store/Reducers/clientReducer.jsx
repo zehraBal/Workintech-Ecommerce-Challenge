@@ -36,5 +36,7 @@ export const clientReducer = (state = initialClient, action) => {
         ...state,
         language: action.payload,
       };
+    default:
+      return state;
   }
 };

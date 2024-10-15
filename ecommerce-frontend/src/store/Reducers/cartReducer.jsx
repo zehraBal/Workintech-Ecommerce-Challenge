@@ -23,5 +23,7 @@ export const cartReducer = (state = initialCart, action) => {
         ...state,
         address: { ...action.payload },
       };
+    default:
+      return state;
   }
 };

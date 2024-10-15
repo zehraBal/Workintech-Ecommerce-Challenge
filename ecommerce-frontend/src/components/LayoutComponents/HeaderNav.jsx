@@ -54,7 +54,14 @@ export default function HeaderNav() {
           <a className="a-gray font-bold  leading-6" href="/">
             Home
           </a>
-          <ShopDropdown />
+          <a
+            className="a-gray font-bold  leading-6 flex items-center gap-1"
+            href="/shop"
+          >
+            Shop
+            <ShopDropdown />
+          </a>
+
           <a className="a-gray font-bold  leading-6" href="/about">
             About
           </a>

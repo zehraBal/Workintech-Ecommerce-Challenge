@@ -14,6 +14,7 @@ import LoginForm from "./components/FormComponents/LoginForm";
 import RegisterForm from "./components/FormComponents/RegisterForm";
 import Register from "./pages/Register";
 import Header from "./components/LayoutComponents/Header";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/blog" Component={Blog} />
         <Route exact path="/login" Component={LoginForm} />
         <Route exact path="/signup" Component={Register} />
+        <Route exact path="/shop" Component={Shop} />
       </Routes>
       <Footer />
       <ToastContainer />

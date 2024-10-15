@@ -1,13 +1,10 @@
 import React from "react";
 import { NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const ShopDropdown = () => {
   return (
-    <NavDropdown
-      title="Shop "
-      id="nav-dropdown"
-      className="custom-nav-dropdown"
-    >
+    <NavDropdown id="nav-dropdown" className="custom-nav-dropdown">
       <div className="dropdown-menu-wrapper">
         {/* Left Column for 'Kadın' */}
         <div className="dropdown-column">

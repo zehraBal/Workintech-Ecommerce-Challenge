@@ -1,4 +1,4 @@
-export default function BestSellerCard() {
+export default function ProductCard() {
   return (
     <div className="flex flex-col items-center w-[239px] h-[615px]">
       <img className="w-full h-[427px]" src="images/team1.png" alt="" />
