@@ -164,6 +164,21 @@ input:checked + .slider:before {
   animation: spin 1s linear infinite;
 }
 
+.bigSpinner::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 40px;
+  width: 40px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 3px solid lightgray;
+  border-top-color: blueviolet;
+  animation: spin 1s linear infinite;
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);

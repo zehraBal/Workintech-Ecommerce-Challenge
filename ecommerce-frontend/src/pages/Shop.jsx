@@ -1,24 +1,15 @@
-import { useEffect } from "react";
-import {
-  fetchCategories,
-  fetchProducts,
-} from "../store/Actions/productActions";
-import { useDispatch, useSelector } from "react-redux";
 import ShopHeader from "../components/ShopComponents/ShopHeader";
 import ShopCategories from "../components/ShopComponents/ShopCategories";
+import Products from "../components/ShopComponents/Products";
+import ClientCard from "../components/LayoutComponents/ClientCard";
 
 export default function Shop() {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.product_list);
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-  console.log("Shop products: ", products);
-
   return (
-    <section className="flex items-center justify-center flex-col">
+    <section className="flex items-center justify-center flex-col h-screen ">
       <ShopHeader />
       <ShopCategories />
+      <Products />
+      <ClientCard />
     </section>
   );
 }

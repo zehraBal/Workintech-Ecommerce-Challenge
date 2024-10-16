@@ -28,7 +28,7 @@ export const productReducer = (state = initialProduct, action) => {
     case SET_PRODUCT_LIST:
       return {
         ...state,
-        product_list: [...action.payload],
+        product_list: [...state.product_list, ...action.payload],
       };
     case SET_TOTAL:
       return {

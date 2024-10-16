@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ClientCard() {
   return (
-    <div className="w-full flex-wrap flex justify-evenly items-center sm:flex-col gap-[30px] py-[50px]">
+    <div className="w-full flex-wrap flex justify-evenly items-center sm:flex-col gap-[30px] py-[50px] bg-[#FAFAFA]">
       <FontAwesomeIcon
         icon={faHooli}
         style={{ color: "#737373", width: "153px", height: "59px" }}
