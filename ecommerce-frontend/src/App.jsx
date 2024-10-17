@@ -15,6 +15,8 @@ import RegisterForm from "./components/FormComponents/RegisterForm";
 import Register from "./pages/Register";
 import Header from "./components/LayoutComponents/Header";
 import Shop from "./pages/Shop";
+import Test from "./pages/Test";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -30,6 +32,12 @@ function App() {
         <Route exact path="/login" Component={LoginForm} />
         <Route exact path="/signup" Component={Register} />
         <Route exact path="/shop" Component={Shop} />
+        <Route exact path="/test" Component={Test} />
+        <Route
+          exact
+          path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId"
+          Component={ProductDetail}
+        />
       </Routes>
       <Footer />
       <ToastContainer />

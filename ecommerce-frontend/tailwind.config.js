@@ -25,6 +25,9 @@ module.exports = {
       backgroundImage: {
         "contact-bg": "url('/images/carousel.png')",
       },
+      boxShadow: {
+        unsplash: "8px 8px 3px 8px rgba(121, 122, 105, 0.1)",
+      },
     },
   },
   plugins: [],

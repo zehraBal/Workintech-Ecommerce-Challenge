@@ -137,6 +137,17 @@ input:checked + .slider:before {
   -webkit-transform: rotate(-45deg);
 }
 
+.arrow-left {
+  width: 9px;
+  height: 9px;
+  border: solid;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(135deg);
+}
+
 .arrow-right-blue {
   width: 9px;
   height: 9px;
@@ -224,4 +235,65 @@ input:checked + .slider:before {
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.carousel-main-image {
+  position: relative;
+}
+.carousel-main-image img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  color: white;
+  font-size: 3rem;
+  padding: 0px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.carousel-thumbnails img {
+  width: 100px;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.carousel-thumbnails img.active {
+  opacity: 1;
+  border: 2px solid #333;
+}
+
+.carousel-thumbnails img:hover {
+  opacity: 1;
 }

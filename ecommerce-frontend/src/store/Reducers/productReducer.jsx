@@ -1,4 +1,5 @@
 import {
+  SET_BEST_SELLERS,
   SET_CATEGORIES,
   SET_FETCH_STATE,
   SET_FILTER,
@@ -6,11 +7,14 @@ import {
   SET_OFFSET,
   SET_PRODUCT_LIST,
   SET_TOTAL,
-} from "../Actions/productActions";
+  SET_PRODUCT_BY_ID,
+} from "../actions/productActions";
 
 const initialProduct = {
   categories: [],
   product_list: [],
+  product_by_id: {},
+  best_sellers: [],
   total: 0,
   limit: 25,
   offset: 0,
@@ -29,6 +33,16 @@ export const productReducer = (state = initialProduct, action) => {
       return {
         ...state,
         product_list: [...state.product_list, ...action.payload],
+      };
+    case SET_BEST_SELLERS:
+      return {
+        ...state,
+        best_sellers: [...action.payload],
+      };
+    case SET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        product_by_id: { ...action.payload },
       };
     case SET_TOTAL:
       return {

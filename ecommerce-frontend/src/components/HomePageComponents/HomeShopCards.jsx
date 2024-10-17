@@ -10,7 +10,7 @@ export default function HomeShopCards() {
 
   return (
     <section className="flex justify-center items-center flex-wrap">
-      <div className="basis-[%80] flex flex-col items-center py-20 gap-12">
+      <div className="basis-[%80] flex flex-col items-center py-20 gap-12 sm:basis-full">
         <div className="flex flex-col justify-center items-center">
           <h2 className="text-2xl font-bold text-prim">EDITOR’S PICK</h2>
           <div className="text-center">
@@ -19,22 +19,22 @@ export default function HomeShopCards() {
             </p>
           </div>
         </div>
-        <div className="w-[90%] flex gap-[30px] ">
-          <div className="w-1/2">
+        <div className="w-[90%] flex gap-[30px] sm:flex-col">
+          <div className="w-1/2 sm:w-full">
             <ShopCard
               path={"images/sc1.png"}
               butonInfo={"MEN"}
               handleClick={handleClick}
             />
           </div>
-          <div className="w-1/4">
+          <div className="w-1/4 sm:w-full">
             <ShopCard
               path={"images/sc2.png"}
               butonInfo={"WOMEN"}
               handleClick={handleClick}
             />
           </div>
-          <div className="w-1/4 flex flex-col items-center justify-center gap-4 ">
+          <div className="w-1/4 flex flex-col items-center justify-center gap-4 sm:w-full">
             <div>
               <ShopCard
                 path={"images/sc3.png"}

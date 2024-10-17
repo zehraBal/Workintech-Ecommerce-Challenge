@@ -1,3 +1,5 @@
+import BestSellers from "../components/HomePageComponents/BestSellers";
+import BlogSection from "../components/HomePageComponents/BlogSection";
 import BottomContainer from "../components/HomePageComponents/BottomContainer";
 import HomeCarousel from "../components/HomePageComponents/HomeCarousel";
 import HomeCarouselBottom from "../components/HomePageComponents/HomeCarouselBottom";
@@ -8,8 +10,10 @@ export default function Home() {
     <>
       <HomeCarousel />
       <HomeShopCards />
+      <BestSellers />
       <HomeCarouselBottom />
       <BottomContainer />
+      <BlogSection />
     </>
   );
 }

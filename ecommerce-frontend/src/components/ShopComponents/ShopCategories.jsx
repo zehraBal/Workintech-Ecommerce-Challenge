@@ -19,7 +19,7 @@ export default function ShopCategories() {
     .slice(0, 5);
   return (
     <section className="w-full flex justify-center items-center bg-[#FAFAFA] pb-12">
-      {isLoading && <span className="spinner"></span>}
+      {/*isLoading && <span className="spinner"></span>*/}
       <div className="w-[85%] flex items-center justify-between flex-wrap">
         {topCategories.map((c) => {
           const tit = c.title.toUpperCase();
@@ -27,9 +27,10 @@ export default function ShopCategories() {
             <CategoryCard
               key={c.id}
               category_name={tit}
-              category_link={c.code}
+              category_id={c.id}
               category_rate={c.rating}
               bg_image={c.img}
+              gender={c.gender}
             />
           );
         })}
