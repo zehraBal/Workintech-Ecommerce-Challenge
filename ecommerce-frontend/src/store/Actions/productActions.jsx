@@ -2,6 +2,7 @@ import axiosInstance from "../../utils/axiosInstance";
 export const SET_PRODUCT_BY_ID = "SET_PRODUCT_BY_ID";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
+export const CLEAR_PRODUCT_LIST = "CLEAR_PRODUCT_LIST";
 export const SET_TOTAL = "SET_TOTAL";
 export const SET_FETCH_STATE = "SET_FETCH_STATE";
 export const SET_LIMIT = "SET_LIMIT";
@@ -16,6 +17,9 @@ export const setCategories = (categories) => ({
 export const setProductList = (products) => ({
   type: SET_PRODUCT_LIST,
   payload: products,
+});
+export const clearProductList = () => ({
+  type: CLEAR_PRODUCT_LIST,
 });
 export const setProductById = (product) => ({
   type: SET_PRODUCT_BY_ID,
@@ -63,6 +67,68 @@ export const fetchProducts = (limit, offset) => {
       dispatch(setFetchState("FETCHED")); // Başarılı duruma geç*/
     } catch (error) {
       dispatch(setFetchState("ERROR")); // Hata durumuna geç
+      console.error("Error fetching products: ", error);
+    }
+  };
+};
+export const fetchProductsWithFilters = (limit, offset, filters) => {
+  return async (dispatch) => {
+    dispatch(setFetchState("FETCHING")); // Fetch durumu başlatıldı
+
+    try {
+      const { categoryId, search, sort } = filters;
+      let url = `/products?limit=${limit}&offset=${offset}`;
+
+      if (categoryId) {
+        url += `&category=${categoryId}`;
+      }
+
+      if (search && search.trim() !== "") {
+        url += `&filter=${search.trim()}`;
+      }
+
+      if (sort) {
+        url += `&sort=${sort}`;
+      }
+
+      const response = await axiosInstance.get(url);
+      const data = response.data;
+      dispatch(setProductList(data.products)); // Ürünleri kaydet
+      dispatch(setTotal(data.total)); // Toplam sayıyı kaydet
+      dispatch(setFetchState("FETCHED")); // Başarılı duruma geç
+    } catch (error) {
+      dispatch(setFetchState("ERROR")); // Hata durumuna geç
+      console.error("Error fetching products with filters: ", error);
+    }
+  };
+};
+
+export const fetchProductsOld = (limit, offset, filter) => {
+  return async (dispatch) => {
+    dispatch(setFetchState("FETCHING"));
+
+    try {
+      const { categoryId, sort, search } = filter;
+      let url = `/products?limit=${limit}&offset=${offset}`;
+
+      if (categoryId) {
+        url += `&category=${categoryId}`;
+      }
+      if (search) {
+        url += `&filter=${search}`;
+      }
+      if (sort) {
+        url += `&sort=${sort}`;
+      }
+
+      const response = await axiosInstance.get(url);
+      const data = response.data;
+
+      dispatch(setProductList(data.products));
+      dispatch(setTotal(data.total));
+      dispatch(setFetchState("FETCHED"));
+    } catch (error) {
+      dispatch(setFetchState("ERROR"));
       console.error("Error fetching products: ", error);
     }
   };

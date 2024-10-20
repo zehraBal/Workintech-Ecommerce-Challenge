@@ -1,14 +1,15 @@
 import {
+  CLEAR_PRODUCT_LIST,
   SET_BEST_SELLERS,
   SET_CATEGORIES,
   SET_FETCH_STATE,
   SET_FILTER,
   SET_LIMIT,
   SET_OFFSET,
+  SET_PRODUCT_BY_ID,
   SET_PRODUCT_LIST,
   SET_TOTAL,
-  SET_PRODUCT_BY_ID,
-} from "../actions/productActions";
+} from "../Actions/productActions";
 
 const initialProduct = {
   categories: [],
@@ -18,7 +19,11 @@ const initialProduct = {
   total: 0,
   limit: 25,
   offset: 0,
-  filter: "",
+  filter: {
+    categoryId: null,
+    sort: null,
+    search: "",
+  },
   fetch_state: "NOT_FETCHED",
 };
 
@@ -33,6 +38,11 @@ export const productReducer = (state = initialProduct, action) => {
       return {
         ...state,
         product_list: [...state.product_list, ...action.payload],
+      };
+    case CLEAR_PRODUCT_LIST:
+      return {
+        ...state,
+        product_list: [],
       };
     case SET_BEST_SELLERS:
       return {
@@ -52,7 +62,7 @@ export const productReducer = (state = initialProduct, action) => {
     case SET_FETCH_STATE:
       return {
         ...state,
-        total: action.payload,
+        fetch_state: action.payload,
       };
     case SET_LIMIT:
       return {
@@ -67,7 +77,10 @@ export const productReducer = (state = initialProduct, action) => {
     case SET_FILTER:
       return {
         ...state,
-        filter: action.payload,
+        filter: {
+          ...state.filter,
+          ...action.payload,
+        },
       };
     default:
       return state;

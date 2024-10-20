@@ -2,30 +2,61 @@ import { useForm, useWatch } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsLoggedIn, setUser } from "../../store/Actions/clientActions";
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.client.user);
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    control, // control'ü ekliyoruz
   } = useForm({
     defaultValues: { email: "", password: "", rememberMe: false },
     mode: "all",
   });
+
   const navigate = useNavigate();
-  //const rememberMe = useWatch("rememberMe");
+
+  // rememberMe checkbox'ının değerini izleyelim
+  const rememberMe = useWatch({
+    control, // useWatch için control'ü belirtiyoruz
+    name: "rememberMe",
+    defaultValue: false, // varsayılan değer false
+  });
 
   const onSubmit = (formData) => {
     axios
       .post("https://workintech-fe-ecommerce.onrender.com/login", formData)
       .then((res) => {
-        console.log("loginSucces");
-        if (window.history.length > 1) {
-          navigate(-1);
+        console.log("success");
+        console.log("res data", res.data);
+
+        const token = res.data.token;
+
+        // rememberMe'ye göre token'ı localStorage veya sessionStorage'a kaydet
+        if (rememberMe) {
+          localStorage.setItem("token", token);
         } else {
-          navigate("/");
+          sessionStorage.setItem("token", token);
         }
+
+        // Redux ile kullanıcı bilgilerini güncelle
+        dispatch(setUser(res.data));
+        dispatch(setIsLoggedIn(true));
+
         toast.success("Login successful!");
+
+        // 2 saniye bekledikten sonra yönlendirme yap
+        setTimeout(() => {
+          if (window.history.length > 1) {
+            navigate(-1); // Bir önceki sayfaya yönlendirme
+          } else {
+            navigate("/"); // Ana sayfaya yönlendirme
+          }
+        }, 2000); // 2 saniye gecikme
       })
       .catch((err) => {
         console.log(err);
@@ -85,11 +116,11 @@ export default function LoginForm() {
         </div>
         <div className="flex gap-2">
           <input
-            className="w-6 h-6 "
+            className="w-6 h-6"
             type="checkbox"
             id="rememberMe"
             name="rememberMe"
-            value={"Remember"}
+            {...register("rememberMe")} // register kullanılarak checkbox kontrol ediliyor
           />
           <label className="text-blue text-lg font-bold" htmlFor="rememberMe">
             Remember me

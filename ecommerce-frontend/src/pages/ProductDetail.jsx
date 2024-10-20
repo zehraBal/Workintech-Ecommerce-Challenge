@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchProductById } from "../store/actions/productActions";
 import ProductDetailCard from "../components/ProductDetailComponents/ProductDetailCard";
 import ProductDetailBC from "../components/ProductDetailComponents/ProductDetailBC";
 import DescriptionCard from "../components/ProductDetailComponents/DescriptionCard";
 import DetailBestSellers from "../components/ProductDetailComponents/DetailBestSellers";
 import ClientCard from "../components/LayoutComponents/ClientCard";
+import { fetchProductById } from "../store/Actions/productActions";
 
 export default function ProductDetail() {
   const { productId } = useParams();
@@ -18,6 +18,7 @@ export default function ProductDetail() {
     setIsLoading(true);
     if (productId) {
       dispatch(fetchProductById(productId));
+      console.log("product fetched");
       setIsLoading(false);
     }
   }, [dispatch, productId]);

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 const ProductCarousel = ({ paths }) => {
-  const imagePaths = paths.map((image) => image.url);
+  // const imagePaths = paths.map((image) => image.url);
+  const imagePaths = ["images/blog1.png", "images/blog2.png"];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {

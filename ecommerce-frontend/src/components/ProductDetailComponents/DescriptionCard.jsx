@@ -1,8 +1,8 @@
 import { useState } from "react";
-import FAQCard from "../PricingComponents/FAQCard";
 
 export default function DescriptionCard({ product }) {
-  const imagePaths = product.images.map((image) => image.url);
+  const imagePaths = product.images;
+  // console.log("imagePaths", imagePaths[0].url);
   const [activeTab, setActiveTab] = useState("description");
   return (
     <section className="flex justify-center items-center flex-wrap">
@@ -52,8 +52,7 @@ export default function DescriptionCard({ product }) {
               <div className="w-[340px] h-full ">
                 <img
                   className="object-cover rounded-md shadow-unsplash"
-                  src={imagePaths[0]}
-                  alt=""
+                  src="images/blog1.png"
                 />
               </div>
               <div className="w-1/3 flex flex-col  items-start gap-[30px] sm:w-full">

@@ -16,8 +16,8 @@ export default function BlogSection() {
           </p>
         </div>
         <div className="w-full flex-wrap flex gap-[30px] justify-between items-center sm:flex-col">
-          {paths.map((p) => {
-            return <BlogCard path={p} />;
+          {paths.map((p, index) => {
+            return <BlogCard key={index} path={p} />;
           })}
         </div>
       </div>

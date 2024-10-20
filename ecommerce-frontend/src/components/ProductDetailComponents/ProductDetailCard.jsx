@@ -13,7 +13,7 @@ export default function ProductDetailCard({ product }) {
       <div className="basis-[75%] pb-12 gap-[30px] flex items-center justify-between sm:flex-col sm:basis-full">
         {/*images section */}
         <div className="w-1/2 ">
-          {<ProductCarousel paths={product.images} />}
+          <ProductCarousel paths={product.images} />
         </div>
         {/* product detail*/}
         <div className="w-1/2 flex flex-col justify-between gap-[10px]">

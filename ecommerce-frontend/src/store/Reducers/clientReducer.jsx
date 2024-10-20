@@ -3,10 +3,12 @@ import {
   SET_ROLES,
   SET_THEME,
   SET_USER,
+  SET_IS_LOGGED_IN,
 } from "../Actions/clientActions";
 
 const initialClient = {
   user: {},
+  isLoggedIn: false,
   addressList: [],
   creditCards: [],
   roles: [],
@@ -35,6 +37,11 @@ export const clientReducer = (state = initialClient, action) => {
       return {
         ...state,
         language: action.payload,
+      };
+    case SET_IS_LOGGED_IN:
+      return {
+        ...state,
+        isLoggedIn: action.payload,
       };
     default:
       return state;
