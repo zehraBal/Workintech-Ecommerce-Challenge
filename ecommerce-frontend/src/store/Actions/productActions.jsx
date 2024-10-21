@@ -120,7 +120,6 @@ export const fetchProductsOld = (limit, offset, filter) => {
       if (sort) {
         url += `&sort=${sort}`;
       }
-
       const response = await axiosInstance.get(url);
       const data = response.data;
 
@@ -153,16 +152,14 @@ export const fetchCategories = () => {
 export const fetchTopProducts = (
   limit = 8,
   offset = 0,
-  sort = "sell_count",
+  sort = "rating",
   order = "desc"
 ) => {
   return (dispatch) => {
     dispatch(setFetchState("FETCHING"));
 
     axiosInstance
-      .get(
-        `/products?limit=${limit}&offset=${offset}&sort=${sort}&order=${order}`
-      )
+      .get(`/products?limit=${limit}&offset=${offset}&sort=${sort}:${order}`)
       .then((response) => {
         const data = response.data;
         console.log(data.products);

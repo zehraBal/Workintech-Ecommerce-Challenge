@@ -7,11 +7,30 @@ export default function CategoryCard({
   bg_image,
   gender,
 }) {
+  function replaceTurkishChars(str) {
+    return str
+      .replace(/ç/g, "c")
+      .replace(/ğ/g, "g")
+      .replace(/ı/g, "i")
+      .replace(/ö/g, "o")
+      .replace(/ş/g, "s")
+      .replace(/ü/g, "u")
+      .replace(/Ç/g, "C")
+      .replace(/Ğ/g, "G")
+      .replace(/İ/g, "I")
+      .replace(/Ö/g, "O")
+      .replace(/Ş/g, "S")
+      .replace(/Ü/g, "U");
+  }
+
   const category_gender = gender == "k" ? "kadin" : "erkek";
-  const name = category_name.toLowerCase();
+  const name = replaceTurkishChars(category_name.toLowerCase());
 
   return (
-    <Link to={`/shop/${category_gender}/${name}`} className="no-underline">
+    <Link
+      to={`/shop/${category_gender}/${name}/${category_id}`}
+      className="no-underline"
+    >
       <div
         className="h-[245px] w-[205px] relative bg-black bg-cover bg-center flex flex-col items-center justify-center cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
         style={{ backgroundImage: `url(${bg_image})` }}

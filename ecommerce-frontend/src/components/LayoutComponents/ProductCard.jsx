@@ -1,8 +1,6 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function ProductCard({
   product_id,
@@ -14,6 +12,17 @@ export default function ProductCard({
 }) {
   const [productLink, setProductLink] = useState("");
   const categories = useSelector((state) => state.product.categories);
+
+  useEffect(() => {
+    const category = categories.find((cat) => cat.id === category_id);
+    if (category) {
+      const categoryName = slugify(category.title.toLowerCase());
+      const gender = category.gender === "k" ? "kadin" : "erkek";
+      const productName = slugify(name);
+      const link = `/shop/${gender}/${categoryName}/${category.id}/${productName}/${product_id}`;
+      setProductLink(link);
+    }
+  }, [categories]);
   const slugify = (text) => {
     const turkishMap = {
       ş: "s",
@@ -42,16 +51,7 @@ export default function ProductCard({
 
     return slug;
   };
-  useEffect(() => {
-    const category = categories.find((cat) => cat.id === category_id);
-    if (category) {
-      const categoryName = slugify(category.title.toLowerCase());
-      const gender = category.gender === "k" ? "kadin" : "erkek";
-      const productName = slugify(name);
-      const link = `/shop/${gender}/${categoryName}/${category.id}/${productName}/${product_id}`;
-      setProductLink(link);
-    }
-  }, [categories]);
+
   return (
     <Link className="no-underline" to={productLink}>
       <div className="flex flex-col items-center w-[239px] h-[615px] cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-md">

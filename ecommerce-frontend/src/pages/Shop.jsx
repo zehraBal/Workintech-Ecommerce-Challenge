@@ -9,14 +9,13 @@ import FilterSection from "../components/ShopComponents/FilterSection";
 import {
   fetchProducts,
   fetchProductsWithFilters,
-  setLimit,
   setOffset,
   clearProductList,
 } from "../store/Actions/productActions";
 import { useParams } from "react-router-dom";
 
 export default function Shop() {
-  const { gender, categoryName, categoryId } = useParams();
+  const { categoryId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const offset = useSelector((state) => state.product.offset);
   const limit = useSelector((state) => state.product.limit);
@@ -35,7 +34,7 @@ export default function Shop() {
   const loadMoreProducts = () => {
     setIsLoading(true);
 
-    if (categoryId) {
+    if (categoryId || filter) {
       // Eğer URL'de categoryId varsa, fetchProductsWithFilters kullan
       const filterParams = { ...filter, categoryId }; // filter'a categoryId ekle
       dispatch(fetchProductsWithFilters(limit, offset, filterParams))
