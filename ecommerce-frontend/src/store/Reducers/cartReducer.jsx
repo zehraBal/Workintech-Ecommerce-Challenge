@@ -1,18 +1,53 @@
-import { SET_ADDRESS, SET_CART, SET_PAYMENT } from "../Actions/cartActions";
+import {
+  REMOVE_CART_ITEM,
+  SET_ADDRESS,
+  SET_CART,
+  SET_PAYMENT,
+} from "../Actions/cartActions";
 
 const initialCart = {
-  cart: [],
+  cart: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
   payment: {},
   address: {},
 };
 
 export const cartReducer = (state = initialCart, action) => {
   switch (action.type) {
-    case SET_CART:
+    case REMOVE_CART_ITEM: {
+      const updatedCart = state.cart.filter(
+        (item) => item.product.id !== action.payload.id
+      );
+      return { ...state, cart: updatedCart };
+    }
+    case SET_CART: {
+      const existingItemIndex = state.cart.findIndex(
+        (item) => item.product.id === action.payload.product.id
+      );
+
+      let updatedCart;
+
+      if (existingItemIndex !== -1) {
+        // If item exists, update its count
+        updatedCart = [...state.cart];
+        updatedCart[existingItemIndex] = {
+          ...updatedCart[existingItemIndex],
+          count: updatedCart[existingItemIndex].count + action.payload.count,
+        };
+      } else {
+        // If item does not exist, add it to the cart
+        updatedCart = [...state.cart, action.payload];
+      }
+
+      // Update localStorage with the new cart
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
       return {
         ...state,
-        cart: [...action.payload],
+        cart: updatedCart,
       };
+    }
     case SET_PAYMENT:
       return {
         ...state,

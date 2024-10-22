@@ -6,7 +6,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductCarousel from "./ProductCarousel";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart } from "../../store/Actions/cartActions";
+import { useEffect } from "react";
 export default function ProductDetailCard({ product }) {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+  useEffect(() => {
+    console.log("Cart updated:", cart);
+  }, [cart]);
+  const handleCartClick = () => {
+    dispatch(setCart({ count: 1, checked: true, product: product }));
+    console.log("product added to cart");
+  };
   const stars = Array(5).fill(0);
   return (
     <section className="flex justify-center items-center flex-wrap bg-[#FAFAFA]">
@@ -51,7 +63,10 @@ export default function ProductDetailCard({ product }) {
             <div className="rounded-[100%] w-4 h-4 bg-[#252B42]"></div>
           </div>
           <div className="flex items-center gap-[10px] mt-4">
-            <button className="button-primary bg-blue text-white">
+            <button
+              className="button-primary bg-blue text-white"
+              onClick={handleCartClick}
+            >
               Add to cart
             </button>
             <div className="border border-[#BDBDBD] rounded-[100%] flex items-center justify-center w-10 h-10">

@@ -60,8 +60,8 @@ export const fetchProducts = (limit, offset) => {
       const response = await axiosInstance // Axios isteğini buradan döndür
         .get(`/products?limit=${limit}&offset=${offset}`);
       const data = response.data;
-      console.log(data.products);
-      console.log(data.total);
+      //console.log(data.products);
+      // console.log(data.total);
       dispatch(setProductList(data.products)); // Ürünleri kaydet
       dispatch(setTotal(data.total)); // Toplam sayıyı kaydet
       dispatch(setFetchState("FETCHED")); // Başarılı duruma geç*/
@@ -162,8 +162,8 @@ export const fetchTopProducts = (
       .get(`/products?limit=${limit}&offset=${offset}&sort=${sort}:${order}`)
       .then((response) => {
         const data = response.data;
-        console.log(data.products);
-        console.log(data.total);
+        //   console.log(data.products);
+        //  console.log(data.total);
         dispatch(setBestSellers(data.products)); // Ürünleri kaydet
         dispatch(setFetchState("FETCHED")); // Başarılı duruma geç
       })

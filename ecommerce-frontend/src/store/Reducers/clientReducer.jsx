@@ -4,6 +4,7 @@ import {
   SET_THEME,
   SET_USER,
   SET_IS_LOGGED_IN,
+  LOG_OUT,
 } from "../Actions/clientActions";
 
 const initialClient = {
@@ -42,6 +43,10 @@ export const clientReducer = (state = initialClient, action) => {
       return {
         ...state,
         isLoggedIn: action.payload,
+      };
+    case LOG_OUT:
+      return {
+        ...initialClient,
       };
     default:
       return state;

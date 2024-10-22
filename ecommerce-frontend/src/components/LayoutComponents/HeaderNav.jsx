@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,32 +9,20 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import ShopDropdown from "./ShopDropdown";
-import { setIsLoggedIn, setUser } from "../../store/Actions/clientActions"; // Redux action
 import md5 from "blueimp-md5";
+import ProfileDropdown from "./ProfileDropDown";
 
 export default function HeaderNav() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.client.isLoggedIn);
-  const user = useSelector((state) => state.client.user); // Kullanıcı bilgilerini alalım
+  const user = useSelector((state) => state.client.user);
   const [isHidden, setIsHidden] = useState(true);
   const [gravatarUrl, setGravatarUrl] = useState("");
-  const navigate = useNavigate();
-
-  // Token kontrolü ve kullanıcı bilgilerini alma
+  console.log(user);
   useEffect(() => {
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-
-    if (token) {
-      dispatch(setIsLoggedIn(true)); // Kullanıcının giriş yapmış olduğunu kaydedin
-      // Kullanıcı bilgilerini Redux'a kaydetmek için API çağrısı yapılabilir.
-      // Örnek olarak sabit bir kullanıcı bilgisi alınıyor:
-      const userData = { name: "John Doe", email: "john@example.com" };
-      dispatch(setUser(userData));
-
-      // Gravatar URL'sini oluştur
-      const emailHash = md5(userData.email.trim().toLowerCase());
-      const gravatarLink = `https://www.gravatar.com/avatar/${emailHash}?s=200`;
+    if (isLoggedIn) {
+      const emailHash = md5(user.email.trim().toLowerCase());
+      const gravatarLink = "https://www.gravatar.com/avatar/${emailHash}?s=200";
       setGravatarUrl(gravatarLink);
     }
   }, [dispatch]);
@@ -70,20 +57,22 @@ export default function HeaderNav() {
         </div>
 
         <nav
-          className={` items-center justify-between flex sm:flex-col gap-[30px] ${
+          className={`items-center justify-between flex sm:flex-col gap-[30px] ${
             isHidden ? "sm:hidden" : ""
           } `}
         >
           <a className="a-gray font-bold  leading-6" href="/">
             Home
           </a>
-          <a
-            className="a-gray font-bold  leading-6 flex items-center gap-1"
-            href="/shop"
-          >
-            Shop
+          <div className="flex items-center justify-center">
+            <a
+              className="a-gray font-bold  leading-6 flex items-center gap-1"
+              href="/shop"
+            >
+              Shop
+            </a>
             <ShopDropdown />
-          </a>
+          </div>
 
           <a className="a-gray font-bold  leading-6" href="/about">
             About
@@ -129,12 +118,16 @@ export default function HeaderNav() {
                 Welcome,
                 <br /> {user.name}!
               </span>
-              <a href="/profile" className="text-blue font-bold">
+              <a
+                href="/profile"
+                className="text-blue font-bold flex items-center  gap-1"
+              >
                 <FontAwesomeIcon
                   size="lg"
                   icon={faUser}
                   style={{ color: "#23A6F0" }}
                 />
+                <ProfileDropdown />
               </a>
             </div>
           ) : (

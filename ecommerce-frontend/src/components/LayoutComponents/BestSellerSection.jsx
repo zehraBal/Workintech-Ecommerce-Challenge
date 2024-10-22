@@ -25,7 +25,7 @@ export default function BestSellerSection() {
   return (
     <section className="flex flex-wrap items-center justify-between gap-[30px] sm:flex-col">
       {topProducts.map((p, index) => {
-        console.log("category_id", p.category_id);
+        // console.log("category_id", p.category_id);
         return (
           <ProductCard
             key={index}
