@@ -17,11 +17,13 @@ export const cartReducer = (state = initialCart, action) => {
   switch (action.type) {
     case REMOVE_CART_ITEM: {
       const updatedCart = state.cart.filter(
-        (item) => item.product.id !== action.payload.id
+        (item) => item.product.id !== action.payload
       );
       return { ...state, cart: updatedCart };
     }
     case SET_CART: {
+      const { count, product, checked } = action.payload;
+
       const existingItemIndex = state.cart.findIndex(
         (item) => item.product.id === action.payload.product.id
       );
@@ -33,7 +35,7 @@ export const cartReducer = (state = initialCart, action) => {
         updatedCart = [...state.cart];
         updatedCart[existingItemIndex] = {
           ...updatedCart[existingItemIndex],
-          count: updatedCart[existingItemIndex].count + action.payload.count,
+          count: count,
         };
       } else {
         // If item does not exist, add it to the cart

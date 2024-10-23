@@ -199,6 +199,9 @@ input:checked + .slider:before {
 .button-sm {
   @apply rounded-[37px] px-5 py-3 gap-3 text-sm font-bold text-center leading-6;
 }
+.button-sm-nr {
+  @apply rounded-[5px] px-5 py-3 gap-3 text-sm font-bold text-center leading-6;
+}
 .button-primary {
   @apply rounded-[5px] px-10 py-[15px] gap-[10px] font-bold text-sm leading-[22px] text-center hover:bg-[#1D91D0];
 }

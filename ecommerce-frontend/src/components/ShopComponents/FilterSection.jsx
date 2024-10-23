@@ -17,18 +17,16 @@ export default function FilterSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Optionally, you can handle any submit logic here if needed
   };
 
   return (
     <section className="w-full flex justify-center items-center">
-      <div className="w-[85%] flex justify-center items-center py-6 gap-20">
-        <div className="w-full flex justify-between items-center">
+      <div className="w-[85%] flex justify-center items-center py-6 gap-20  ">
+        <div className="w-full flex justify-between items-center sm:flex-col flex-wrap sm:justify-center sm:gap-5">
           <span className="font-bold text-span leading-6 text-sec">
             Showing {total} results
           </span>
-          <div>Views:</div>
-          <div className="flex items-center gap-[15px]">
+          <div className="flex items-center gap-[15px] sm:flex-col">
             <select
               className="contact-form-input font-bold text-sec"
               value={filter.sort || "price:desc"} // Controlled component for sort
@@ -39,7 +37,10 @@ export default function FilterSection() {
               <option value="rating:desc">Rating: Descending</option>
               <option value="rating:asc">Rating: Ascending</option>
             </select>
-            <form className="flex items-center gap-1" onSubmit={handleSubmit}>
+            <form
+              className="flex items-center gap-1  sm:justify-center"
+              onSubmit={handleSubmit}
+            >
               <input
                 className="contact-form-input"
                 placeholder="Search"
@@ -48,7 +49,7 @@ export default function FilterSection() {
               />
               <button
                 type="submit"
-                className="button-primary bg-blue text-white"
+                className="button-primary bg-blue text-white "
               >
                 Search
               </button>

@@ -2,37 +2,45 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import IncrementDecrementButton from "../LayoutComponents/IncDecButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-
-export default function CartItem({ product, count }) {
+import { removeCartItem, setCart } from "../../store/Actions/cartActions";
+import { toast } from "react-toastify";
+export default function CartItem({ product, count, checked }) {
   const dispatch = useDispatch();
-
   const handleIncrement = () => {
-    // dispatch(setCartItem({ product, count: count + 1 }));
+    dispatch(setCart({ product: product, count: count + 1, checked: true }));
   };
 
   const handleDecrement = () => {
     if (count > 1) {
-      //   dispatch(setCartItem({ product, count: count - 1 }));
+      // Ürünün sayısını azaltıp Redux'taki sepete tekrar ekliyoruz
+      dispatch(
+        setCart({
+          product: product,
+          count: count - 1,
+          checked: true,
+        })
+      );
     }
   };
-
   const handleRemove = () => {
-    //   dispatch(removeCartItem(product.id)); // Ürünü sepetten çıkar
+    toast.warning("Product removed from cart!");
+
+    dispatch(removeCartItem(product.id));
   };
 
   return (
-    <section className="flex justify-center items-center">
-      <div className="basis-[85%] justify-between items-center">
-        <input type="checkbox" />
+    <section className="w-full flex justify-center items-center">
+      <div className="w-[85%] flex justify-between  items-center  bg-[#FAFAFA] border border-solid border-sec sm:flex-col flex-wrap py-10 px-5 rounded-md">
+        <input type="checkbox" checked={checked} />
         <img
           src={product.images[0].url}
           alt={product.name}
-          className="w-20 h-20 object-cover"
+          className="w-32 h-32 object-cover border border-solid border-sec rounded-md shadow-sm"
         />
 
         <div>
-          <h5 className="font-bold">{product.name}</h5>
-          <h6 className="text-sm text-gray-600">{product.description}</h6>
+          <h5 className="text-base font-bold">{product.name}</h5>
+          <h6 className="text-sm text-sec">{product.description}</h6>
         </div>
 
         {/* Increment/Decrement button */}
@@ -43,16 +51,17 @@ export default function CartItem({ product, count }) {
         />
 
         <div>
-          <h5 className="text-lg font-bold">
+          <h5 className="text-xl font-bold text-prim">
             ${(product.price * count).toFixed(2)}
           </h5>
         </div>
 
-        {/* Delete icon */}
         <FontAwesomeIcon
+          className="cursor-pointer hover:bg-[#D3D3D3] p-2  rounded-full"
+          size="xl"
           icon={faTrashCan}
-          style={{ color: "#74C0FC" }}
-          onClick={handleRemove} // Sepetten ürünü kaldırma
+          style={{ color: "#252B42" }}
+          onClick={handleRemove}
         />
       </div>
     </section>

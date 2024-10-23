@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-
-const ProductCarousel = ({ paths }) => {
+const ProductCarousel = ({ product }) => {
+  console.log(paths);
   // const imagePaths = paths.map((image) => image.url);
-  const imagePaths = ["images/blog1.png", "images/blog2.png"];
+  const imagePaths = product.images;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -25,7 +24,7 @@ const ProductCarousel = ({ paths }) => {
     <div className="carousel-container">
       {/* Ana Büyük Resim */}
       <div className="carousel-main-image">
-        <img src={imagePaths[currentImageIndex]} alt="Product" />
+        <img src={imagePaths[currentImageIndex].url} alt="Product" />
         <button className="carousel-button prev" onClick={prevImage}>
           &lt;
         </button>

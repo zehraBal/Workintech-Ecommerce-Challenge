@@ -11,6 +11,7 @@ import {
 import ShopDropdown from "./ShopDropdown";
 import md5 from "blueimp-md5";
 import ProfileDropdown from "./ProfileDropDown";
+import { useNavigate } from "react-router-dom";
 
 export default function HeaderNav() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export default function HeaderNav() {
   const handleClick = () => {
     setIsHidden(!isHidden);
   };
+  const navigate = useNavigate();
 
   console.log("Is logged in:", isLoggedIn);
   return (
@@ -40,16 +42,28 @@ export default function HeaderNav() {
             BrandName
           </div>
           <div className="flex gap-6 items-center lg:hidden cursor-pointer">
-            <FontAwesomeIcon icon={faUser} style={{ color: "#3C403D" }} />
+            <div className="flex items-center gap-1">
+              <FontAwesomeIcon
+                onClick={() => navigate("/profile")}
+                icon={faUser}
+                style={{ color: "#3C403D" }}
+              />
+              <ProfileDropdown className="m-0" />
+            </div>
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
               style={{ color: "#3C403D" }}
             />
             <FontAwesomeIcon
+              onClick={() => navigate("/cart")}
               icon={faCartShopping}
               style={{ color: "#3C403D" }}
             />
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#3C403D" }} />
+            <FontAwesomeIcon
+              onClick={() => navigate("/favoites")}
+              icon={faHeart}
+              style={{ color: "#3C403D" }}
+            />
             <div onClick={handleClick}>
               <FontAwesomeIcon icon={faBars} style={{ color: "#3C403D" }} />
             </div>

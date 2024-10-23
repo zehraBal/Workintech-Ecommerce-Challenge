@@ -58,10 +58,7 @@ export default function ProductCard({
         <img className="w-full h-[427px]" src={images[0].url} alt="" />
         <div className="flex flex-col items-center pl-[25px]  pr-[25px]  pt-[25px]  pb-[35px] gap-[10px]">
           <h5 className="font-bold text-base text-prim">{name} </h5>
-          <a className="a-gray" href="/shop">
-            {description}
-          </a>
-
+          <h6 className="text-sm text-sec text-center">{description}</h6>
           <div className="flex gap-[5px] items-center py-[5px] px-[3px] ">
             <h5 className="font-bold text-base text-[#BDBDBD]">${price}</h5>
             <h5 className="font-bold text-base text-[#23856D]">

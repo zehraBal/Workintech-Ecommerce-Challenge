@@ -22,7 +22,6 @@ export default function ShopCategories() {
     .slice(0, 5);
 
   const handleCategoryClick = (category) => {
-    // Navigate to the shop page with the selected category details in the URL
     navigate(
       `/shop/${category.gender}/${category.title.toLowerCase()}/${category.id}`
     );
@@ -33,7 +32,7 @@ export default function ShopCategories() {
       {isLoading ? (
         <span className="spinner"></span> // Show loading spinner if categories are being fetched
       ) : (
-        <div className="w-[85%] flex items-center justify-between flex-wrap">
+        <div className="w-[85%] flex items-center justify-between flex-wrap sm:flex-col sm:gap-5">
           {topCategories.map((c) => {
             const title = c.title.toUpperCase();
             return (

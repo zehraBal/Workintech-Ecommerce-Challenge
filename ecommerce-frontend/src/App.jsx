@@ -60,6 +60,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" Component={Home} />
+        <Route exact path="/home" Component={Home} />
         <Route exact path="/contact" Component={Contact} />
         <Route exact path="/pricing" Component={Pricing} />
         <Route exact path="/about" Component={AboutUs} />

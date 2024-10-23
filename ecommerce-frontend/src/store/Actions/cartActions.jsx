@@ -5,7 +5,7 @@ export const REMOVE_CART_ITEM = "REMOVE_CART_ITEM";
 
 export const removeCartItem = (productId) => ({
   type: REMOVE_CART_ITEM,
-  payload: { id: productId },
+  payload: productId,
 });
 export const setCart = (item) => ({
   type: SET_CART,

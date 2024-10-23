@@ -8,16 +8,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductCarousel from "./ProductCarousel";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart } from "../../store/Actions/cartActions";
-import { useEffect } from "react";
+import { toast } from "react-toastify";
+
 export default function ProductDetailCard({ product }) {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
-  useEffect(() => {
-    console.log("Cart updated:", cart);
-  }, [cart]);
+
   const handleCartClick = () => {
     dispatch(setCart({ count: 1, checked: true, product: product }));
     console.log("product added to cart");
+    toast.success("Product added to cart!");
   };
   const stars = Array(5).fill(0);
   return (
@@ -25,7 +24,7 @@ export default function ProductDetailCard({ product }) {
       <div className="basis-[75%] pb-12 gap-[30px] flex items-center justify-between sm:flex-col sm:basis-full">
         {/*images section */}
         <div className="w-1/2 ">
-          <ProductCarousel paths={product.images} />
+          <ProductCarousel product={product} />
         </div>
         {/* product detail*/}
         <div className="w-1/2 flex flex-col justify-between gap-[10px]">
