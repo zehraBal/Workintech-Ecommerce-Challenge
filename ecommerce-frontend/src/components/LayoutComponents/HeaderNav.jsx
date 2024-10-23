@@ -27,7 +27,8 @@ export default function HeaderNav() {
       setGravatarUrl(gravatarLink);
     }
   }, [dispatch]);
-
+  const cart = useSelector((state) => state.cart.cart);
+  const itemCount = cart.reduce((total, item) => total + item.count, 0);
   const handleClick = () => {
     setIsHidden(!isHidden);
   };
@@ -59,6 +60,7 @@ export default function HeaderNav() {
               icon={faCartShopping}
               style={{ color: "#3C403D" }}
             />
+
             <FontAwesomeIcon
               onClick={() => navigate("/favoites")}
               icon={faHeart}
@@ -112,11 +114,18 @@ export default function HeaderNav() {
             />
           </a>
           <a href="/cart" className="p-[15px]">
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              size="lg"
-              style={{ color: "#23A6F0" }}
-            />
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                size="lg"
+                style={{ color: "#23A6F0" }}
+              />
+              {itemCount != 0 && (
+                <div className="bg-blue h-5 w-5 p-1 text-white rounded-full flex items-center justify-center absolute top-[-14px] right-[-12px]">
+                  {itemCount}
+                </div>
+              )}
+            </div>
           </a>
           <a href="/favorites" className="p-[15px]">
             <FontAwesomeIcon

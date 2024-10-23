@@ -19,6 +19,7 @@ export const cartReducer = (state = initialCart, action) => {
       const updatedCart = state.cart.filter(
         (item) => item.product.id !== action.payload
       );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
       return { ...state, cart: updatedCart };
     }
     case SET_CART: {
@@ -36,6 +37,7 @@ export const cartReducer = (state = initialCart, action) => {
         updatedCart[existingItemIndex] = {
           ...updatedCart[existingItemIndex],
           count: count,
+          checked: checked,
         };
       } else {
         // If item does not exist, add it to the cart

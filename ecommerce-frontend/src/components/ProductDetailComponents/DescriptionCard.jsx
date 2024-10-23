@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function DescriptionCard({ product }) {
-  const imagePaths = product.images;
+  const imagePaths = product.images || [];
   // console.log("imagePaths", imagePaths[0].url);
   const [activeTab, setActiveTab] = useState("description");
   return (
@@ -52,7 +52,7 @@ export default function DescriptionCard({ product }) {
               <div className="w-[340px] h-full ">
                 <img
                   className="object-cover rounded-md shadow-unsplash"
-                  src="images/blog1.png"
+                  src={imagePaths[0].url}
                 />
               </div>
               <div className="w-1/3 flex flex-col  items-start gap-[30px] sm:w-full">
@@ -88,7 +88,7 @@ export default function DescriptionCard({ product }) {
           )}
 
           {activeTab === "additional_info" && (
-            <div className="flex flex-col justify-center items-center gap-6">
+            <div className="flex flex-col justify-center items-start gap-6">
               <h5 className="text-2xl font-bold text-prim">
                 Additional Information
               </h5>
