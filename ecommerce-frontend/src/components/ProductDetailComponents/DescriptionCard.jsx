@@ -52,7 +52,7 @@ export default function DescriptionCard({ product }) {
               <div className="w-[340px] h-full ">
                 <img
                   className="object-cover rounded-md shadow-unsplash"
-                  src={imagePaths[0].url}
+                  src="images/team1.png"
                 />
               </div>
               <div className="w-1/3 flex flex-col  items-start gap-[30px] sm:w-full">

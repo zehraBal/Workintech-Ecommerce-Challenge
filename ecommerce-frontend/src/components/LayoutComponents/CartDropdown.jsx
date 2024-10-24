@@ -3,8 +3,8 @@ import { Dropdown, DropdownMenu, DropdownToggle } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"; // Assuming you are using react-router for navigation
 
-export default function Test() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function CartDropdown() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const cart = useSelector((state) => state.cart.cart);
   const dropdownRef = useRef(null);
   const navigate = useNavigate(); // Use navigate from react-router
@@ -12,22 +12,18 @@ export default function Test() {
   // Open dropdown when cart changes
   useEffect(() => {
     if (cart.length > 0) {
-      setIsOpen(true);
+      setDropdownOpen(true);
     }
   }, [cart]);
 
   // Toggle dropdown manually
   const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
+    setDropdownOpen((prev) => !prev);
   };
 
   return (
-    <Dropdown isOpen={isOpen} toggle={toggleDropdown} ref={dropdownRef}>
-      <DropdownToggle
-        aria-expanded={isOpen}
-        data-toggle="dropdown"
-        tag="span"
-      ></DropdownToggle>
+    <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} ref={dropdownRef}>
+      <DropdownToggle data-toggle="dropdown" tag="span"></DropdownToggle>
       <DropdownMenu>
         <div className="w-full flex items-center flex-col gap-4 py-10 px-4">
           {cart.map((item, index) => (
@@ -56,15 +52,17 @@ export default function Test() {
           <div className="w-[300px] flex gap-2 px-9 ">
             <button
               className="button-sm bg-sec text-white p-2 w-1/2"
-              onClick={() => navigate("/cart")}
+              onClick={() => {
+                navigate("/cart");
+              }}
             >
               Go to cart
             </button>
             <button
               className="button-sm bg-blue text-white p-2"
-              onClick={() =>
-                isLoggedin ? navigate("/order") : navigate("/login")
-              }
+              onClick={() => {
+                isLoggedin ? navigate("/order") : navigate("/login");
+              }}
             >
               Complete your shopping
             </button>

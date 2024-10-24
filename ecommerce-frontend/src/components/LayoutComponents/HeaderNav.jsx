@@ -12,6 +12,8 @@ import ShopDropdown from "./ShopDropdown";
 import md5 from "blueimp-md5";
 import ProfileDropdown from "./ProfileDropDown";
 import { useNavigate } from "react-router-dom";
+import CartDropdown from "./CartDropdown";
+import Test from "../../pages/Test";
 
 export default function HeaderNav() {
   const dispatch = useDispatch();
@@ -113,8 +115,8 @@ export default function HeaderNav() {
               style={{ color: "#23A6F0" }}
             />
           </a>
-          <a href="/cart" className="p-[15px]">
-            <div className="relative">
+          <div className="p-[15px] flex items-center justify-center gap-2">
+            <div className="relative flex justify-center items-center gap-2">
               <FontAwesomeIcon
                 icon={faCartShopping}
                 size="lg"
@@ -126,7 +128,8 @@ export default function HeaderNav() {
                 </div>
               )}
             </div>
-          </a>
+            <CartDropdown />
+          </div>
           <a href="/favorites" className="p-[15px]">
             <FontAwesomeIcon
               size="lg"

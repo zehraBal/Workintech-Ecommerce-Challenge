@@ -30,8 +30,9 @@ export default function CartItem({ product, count, checked }) {
 
   return (
     <section className="w-full flex justify-center items-center">
-      <div className="w-[85%] flex justify-between items-center bg-[#FAFAFA] border border-solid border-sec sm:flex-col flex-wrap py-10 px-5 rounded-md">
+      <div className="w-[85%] flex justify-between items-center bg-[#FAFAFA] border border-solid border-sec gap-2 sm:flex-col  flex-wrap py-10 px-5 rounded-md">
         <input
+          className="w-5 h-5"
           type="checkbox"
           checked={checked} // Use the checked prop from Redux directly
           onChange={handleCheck} // Dispatch the action to toggle checked state
@@ -66,7 +67,7 @@ export default function CartItem({ product, count, checked }) {
           className="cursor-pointer hover:bg-[#D3D3D3] p-2 rounded-full"
           size="xl"
           icon={faTrashCan}
-          style={{ color: "#252B42" }}
+          style={{ color: " #23a6f0" }}
           onClick={handleRemove}
         />
       </div>

@@ -300,3 +300,21 @@ input:checked + .slider:before {
 .carousel-thumbnails img:hover {
   opacity: 1;
 }
+
+.nav-link {
+  color: #23a6f0 !important;
+}
+
+.btn {
+  padding: 0 !important;
+  border: none;
+  color: rgb(35, 166, 240) !important;
+  background-color: transparent;
+}
+.btn-primary {
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-hover-border-color: transparent !important;
+  --bs-btn-active-bg: transparent !important;
+}
