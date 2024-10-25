@@ -4,8 +4,8 @@ import {
   legacy_createStore as createStore,
 } from "redux";
 import { thunk } from "redux-thunk";
-import { clientReducer } from "./reducers/clientReducer";
 import { productReducer } from "./reducers/productReducer";
+import { clientReducer } from "./reducers/clientReducer";
 import { cartReducer } from "./reducers/cartReducer";
 const reducer = combineReducers({
   product: productReducer,
