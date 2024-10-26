@@ -2,14 +2,14 @@ export default function BottomContainer() {
   return (
     <section className="flex justify-center items-center flex-wrap">
       <div className="flex  items-center gap-[30px] flex-wrap sm:flex-col">
-        <div className="w-[55%]">
+        <div className="w-[55%] sm:w-full">
           <img
             className="w-full h-full object-cover "
             src="images/hero2.png"
             alt=""
           />
         </div>
-        <div className="flex flex-col gap-[30px] items-start">
+        <div className="flex flex-col gap-[30px] items-start sm:items-center sm:text-center">
           <h5 className="text-base font-bold text-[#BDBDBD]">SUMMER 2020</h5>
           <h1 className="text-[40px] leading-[50px] font-bold text-prim">
             Part of the Neural Universe

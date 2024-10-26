@@ -49,24 +49,38 @@ export default function CartDropdown() {
               </div>
             </div>
           ))}
-          <div className="w-[300px] flex gap-2 px-9 ">
-            <button
-              className="button-sm bg-sec text-white p-2 w-1/2"
-              onClick={() => {
-                navigate("/cart");
-              }}
-            >
-              Go to cart
-            </button>
-            <button
-              className="button-sm bg-blue text-white p-2"
-              onClick={() => {
-                isLoggedin ? navigate("/order") : navigate("/login");
-              }}
-            >
-              Complete your shopping
-            </button>
-          </div>
+          {cart.length != 0 ? (
+            <div className="w-[300px] flex gap-2 px-9 ">
+              <button
+                className="button-sm bg-sec text-white p-2 w-1/2"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              >
+                Go to cart
+              </button>
+              <button
+                className="button-sm bg-blue text-white p-2"
+                onClick={() => {
+                  isLoggedin ? navigate("/order") : navigate("/login");
+                }}
+              >
+                Complete your shopping
+              </button>
+            </div>
+          ) : (
+            <div className="w-[300px] flex gap-9 px-9 flex-col items-center">
+              <h5>
+                Your cart is empty.
+                <button
+                  className="button-primary bg-blue text-white p-2"
+                  onClick={() => navigate("/shop")}
+                >
+                  Start shopping!
+                </button>
+              </h5>
+            </div>
+          )}
         </div>
       </DropdownMenu>
     </Dropdown>

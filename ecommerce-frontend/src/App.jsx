@@ -22,6 +22,7 @@ import { setIsLoggedIn, setUser } from "./store/Actions/clientActions";
 import { useEffect } from "react";
 import axiosInstance from "./utils/axiosInstance";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,8 @@ function App() {
         <Route exact path="/team" Component={Team} />
         <Route exact path="/blog" Component={Blog} />
         <Route exact path="/cart" Component={Cart} />
+        <Route exact path="/order" Component={Order} />
+
         <Route exact path="/login" Component={LoginForm} />
         <Route exact path="/signup" Component={Register} />
         <Route

@@ -5,6 +5,8 @@ import {
   SET_USER,
   SET_IS_LOGGED_IN,
   LOG_OUT,
+  SET_ADDRESS,
+  SET_CREDIT_CARD,
 } from "../Actions/clientActions";
 
 const initialClient = {
@@ -28,6 +30,16 @@ export const clientReducer = (state = initialClient, action) => {
       return {
         ...state,
         roles: [...action.payload],
+      };
+    case SET_ADDRESS:
+      return {
+        ...state,
+        addressList: [...action.payload],
+      };
+    case SET_CREDIT_CARD:
+      return {
+        ...state,
+        creditCards: [...action.payload],
       };
     case SET_THEME:
       return {

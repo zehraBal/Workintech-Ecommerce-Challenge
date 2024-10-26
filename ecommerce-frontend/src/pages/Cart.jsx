@@ -4,7 +4,6 @@ import OrderSummaryBox from "../components/CartComponents/OrderSummaryBox";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
   const itemCount = cart.reduce((total, item) => total + item.count, 0);
   const total = cart
     .filter((item) => item.checked) // Only include items where checked is true
@@ -15,7 +14,7 @@ export default function Cart() {
       <div className="w-full flex items-start gap-5 justify-around sm:flex-col sm:items-center">
         <div className="w-3/5 flex flex-col  items-center justify-center gap-5">
           <h2 className="text-2xl font-bold mb-4">
-            Shopping Cart{" "}
+            Shopping Cart
             <span className="text-lg text-sec">{`(Total of ${itemCount} products )`}</span>
           </h2>
 
@@ -34,7 +33,7 @@ export default function Cart() {
           )}
         </div>
 
-        <OrderSummaryBox total={total.toFixed(2)} />
+        {cart.length != 0 && <OrderSummaryBox total={total.toFixed(2)} />}
       </div>
     </section>
   );
