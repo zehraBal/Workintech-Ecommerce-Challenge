@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import axiosInstance from "./utils/axiosInstance";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import CompleteOrder from "./components/OrderComponents/CompleteOrder";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ function App() {
         <Route exact path="/blog" Component={Blog} />
         <Route exact path="/cart" Component={Cart} />
         <Route exact path="/order" Component={Order} />
-
+        <Route exact path="/order/complete" Component={CompleteOrder} />
         <Route exact path="/login" Component={LoginForm} />
         <Route exact path="/signup" Component={Register} />
         <Route

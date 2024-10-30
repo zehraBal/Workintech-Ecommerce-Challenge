@@ -12,8 +12,10 @@ export default function Order() {
   }, [dispatch]);
 
   return (
-    <section className="flex items-center justify-center flex-col ">
-      <OrderPageMain />
+    <section className="flex items-center gap-9 justify-center sm:flex-col ">
+      <div className="sm:order-2 sm:w-full">
+        <OrderPageMain />
+      </div>
       <OrderSummaryBox />
     </section>
   );

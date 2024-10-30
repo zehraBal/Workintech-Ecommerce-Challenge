@@ -31,7 +31,7 @@ export default function AddressInformation({ onNext }) {
   return (
     <section className="w-full flex justify-center items-center">
       <div className="w-[85%] flex flex-col py-10 gap-6 relative">
-        <h2 className="text-3xl mb-9">Adres Bilgileri</h2>
+        <h2 className="text-3xl mb-9">Address Informations</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {userAdress.map((address) => (

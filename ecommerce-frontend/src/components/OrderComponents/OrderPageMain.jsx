@@ -3,21 +3,36 @@ import AddressInformation from "./AddressInformation";
 import { useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import PaymentInformation from "./PaymentInformation";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function OrderPageMain() {
   const selectedAddress = useSelector((state) => state.cart.address);
-  console.log("selectedAddress", selectedAddress);
+  const selectedPayment = useSelector((state) => state.cart.payment);
   const [showAddress, setShowAddress] = useState(true);
   const [showCreditCard, setShowCreditCard] = useState(false);
+  const navigate = useNavigate();
+  const onNext = (e) => {
+    e.preventDefault(); // Prevent any default form submission
 
-  const onNext = () => {
-    setShowAddress(false);
-    setShowCreditCard(true);
+    if (
+      !selectedAddress ||
+      Object.keys(selectedAddress).length === 0 ||
+      !selectedPayment ||
+      Object.keys(selectedPayment).length === 0
+    ) {
+      toast.error("Please select both address and payment method!");
+      return;
+    } else {
+      navigate("/order/complete");
+    }
+
+    // Only navigate if both are selected
   };
 
   return (
-    <section className="w-full flex items-center justify-center flex-col">
-      <div className="w-[85%] flex items-center justify-between relative">
+    <section className="w-full flex items-center justify-center flex-col py-28">
+      <div className="w-full flex items-center justify-between relative">
         <div
           onClick={() => {
             setShowAddress(true);
@@ -87,7 +102,7 @@ export default function OrderPageMain() {
             transition={{ duration: 0.3 }}
             className="w-full"
           >
-            <PaymentInformation />
+            <PaymentInformation onNext={onNext} />
           </motion.div>
         )}
       </AnimatePresence>

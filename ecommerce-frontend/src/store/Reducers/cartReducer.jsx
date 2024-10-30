@@ -1,4 +1,5 @@
 import {
+  CLEAR_CART,
   REMOVE_CART_ITEM,
   SET_CART,
   SET_CART_SUBTOTAL,
@@ -15,8 +16,12 @@ const initialCart = {
   payment: {},
   address: {},
   installment: null,
-  cartSubtotal: 0,
-  shippingCost: 29.99,
+  cartSubtotal: localStorage.getItem("cartSubtotal")
+    ? parseFloat(localStorage.getItem("cartSubtotal"))
+    : 0,
+  shippingCost: localStorage.getItem("shippingCost")
+    ? parseFloat(localStorage.getItem("shippingCost"))
+    : 29.99,
 };
 
 export const cartReducer = (state = initialCart, action) => {
@@ -74,14 +79,26 @@ export const cartReducer = (state = initialCart, action) => {
         installment: action.payload,
       };
     case SET_CART_SUBTOTAL:
+      localStorage.setItem("cartSubtotal", action.payload);
       return {
         ...state,
         cartSubtotal: action.payload,
       };
     case SET_SHIPPING_COST:
+      localStorage.setItem("shippingCost", action.payload);
       return {
         ...state,
         shippingCost: action.payload,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+        payment: {},
+        address: {},
+        installment: null,
+        cartSubtotal: 0,
+        shippingCost: 0,
       };
     default:
       return state;

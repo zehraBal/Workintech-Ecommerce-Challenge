@@ -5,11 +5,10 @@ export default function OrderSummaryBox() {
   const isLoggedIn = useSelector((state) => state.client.isLoggedIn);
   const subtotal = useSelector((state) => state.cart.cartSubtotal);
   const shippingCost = useSelector((state) => state.cart.shippingCost);
-  const total = subtotal + shippingCost;
   const navigate = useNavigate();
 
   return (
-    <section className="w-1/4 flex items-center justify-center flex-col bg-[#FAFAFA] gap-9 p-4 border-2 rounded-md border-solid border-prim sm:w-[60%]">
+    <section className="w-1/4 flex items-center justify-center flex-col bg-[#FAFAFA] gap-9 p-4 border-2 rounded-md border-solid border-sec shadow-md sm:w-[60%]">
       <div className="w-full flex items-start justify-center gap-4 flex-col">
         <h5 className="text-2xl text-prim font-bold">Order Summary</h5>
         <div className="w-full flex justify-between items-center">
@@ -20,9 +19,7 @@ export default function OrderSummaryBox() {
         </div>
         <div className="w-full flex justify-between items-center">
           <h6 className="text-xl text-prim font-bold">Shipping:</h6>
-          <span className="text-xl text-prim font-bold">
-            ${shippingCost.toFixed(2)}
-          </span>
+          <span className="text-xl text-prim font-bold">$29.99</span>
         </div>
         {subtotal >= 150 && (
           <div className="w-full flex justify-between items-center">
@@ -36,7 +33,7 @@ export default function OrderSummaryBox() {
         <div className="w-full flex justify-between items-center bg-sec bg-opacity-30 py-3 px-2 rounded-md">
           <h6 className="text-xl text-prim font-bold">Total:</h6>
           <span className="text-xl text-prim font-bold">
-            ${total.toFixed(2)}
+            ${(shippingCost + subtotal).toFixed(2)}
           </span>
         </div>
       </div>
