@@ -1,28 +1,34 @@
 import { useEffect, useState, useRef } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"; // Assuming you are using react-router for navigation
+import { useNavigate } from "react-router-dom";
 
 export default function CartDropdown() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const cart = useSelector((state) => state.cart.cart);
+  const isLoggedin = useSelector((state) => state.client.isLoggedIn);
   const dropdownRef = useRef(null);
-  const navigate = useNavigate(); // Use navigate from react-router
+  const navigate = useNavigate();
 
-  // Open dropdown when cart changes
   useEffect(() => {
     if (cart.length > 0) {
       setDropdownOpen(true);
     }
   }, [cart]);
 
-  // Toggle dropdown manually
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
+  const handleClick = () => {
+    if (isLoggedin) {
+      navigate("/order");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} ref={dropdownRef}>
+    <Dropdown show={dropdownOpen} onToggle={toggleDropdown} ref={dropdownRef}>
       <DropdownToggle data-toggle="dropdown" tag="span"></DropdownToggle>
       <DropdownMenu>
         <div className="w-full flex items-center flex-col gap-4 py-10 px-4">
@@ -61,9 +67,7 @@ export default function CartDropdown() {
               </button>
               <button
                 className="button-sm bg-blue text-white p-2"
-                onClick={() => {
-                  isLoggedin ? navigate("/order") : navigate("/login");
-                }}
+                onClick={handleClick}
               >
                 Complete your shopping
               </button>

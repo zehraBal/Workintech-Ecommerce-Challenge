@@ -1,14 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartComponents/CartItem";
 import OrderSummaryBox from "../components/CartComponents/OrderSummaryBox";
+import { useEffect } from "react";
+import { setCartSubtotal, setShippingCost } from "../store/Actions/cartActions";
 
 export default function Cart() {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const itemCount = cart.reduce((total, item) => total + item.count, 0);
-  const total = cart
-    .filter((item) => item.checked) // Only include items where checked is true
+  const subtotal = cart
+    .filter((item) => item.checked)
     .reduce((sum, item) => sum + item.product.price * item.count, 0);
 
+  useEffect(() => {
+    dispatch(setCartSubtotal(subtotal));
+    dispatch(setShippingCost(subtotal >= 150 ? 0 : 29.99));
+  }, [dispatch, subtotal]);
   return (
     <section className="flex flex-col items-center  py-28">
       <div className="w-full flex items-start gap-5 justify-around sm:flex-col sm:items-center">
@@ -33,7 +40,7 @@ export default function Cart() {
           )}
         </div>
 
-        {cart.length != 0 && <OrderSummaryBox total={total.toFixed(2)} />}
+        {cart.length != 0 && <OrderSummaryBox />}
       </div>
     </section>
   );

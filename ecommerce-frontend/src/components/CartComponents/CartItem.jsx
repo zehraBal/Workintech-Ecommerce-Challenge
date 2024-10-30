@@ -13,7 +13,6 @@ export default function CartItem({ product, count, checked }) {
   };
 
   const handleCheck = () => {
-    // Toggle the checked state
     dispatch(setCart({ product, count, checked: !checked }));
   };
 
@@ -34,8 +33,8 @@ export default function CartItem({ product, count, checked }) {
         <input
           className="w-5 h-5"
           type="checkbox"
-          checked={checked} // Use the checked prop from Redux directly
-          onChange={handleCheck} // Dispatch the action to toggle checked state
+          checked={checked}
+          onChange={handleCheck}
         />
         <img
           src={product.images[0].url}

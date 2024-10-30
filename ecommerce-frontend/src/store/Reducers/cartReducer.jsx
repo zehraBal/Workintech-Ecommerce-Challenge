@@ -1,8 +1,11 @@
 import {
   REMOVE_CART_ITEM,
-  SET_ADDRESS,
   SET_CART,
+  SET_CART_SUBTOTAL,
+  SET_INSTALLMENT,
   SET_PAYMENT,
+  SET_SELECTED_ADDRESS,
+  SET_SHIPPING_COST,
 } from "../Actions/cartActions";
 
 const initialCart = {
@@ -11,6 +14,9 @@ const initialCart = {
     : [],
   payment: {},
   address: {},
+  installment: null,
+  cartSubtotal: 0,
+  shippingCost: 29.99,
 };
 
 export const cartReducer = (state = initialCart, action) => {
@@ -55,12 +61,27 @@ export const cartReducer = (state = initialCart, action) => {
     case SET_PAYMENT:
       return {
         ...state,
-        payment: { ...action.payload },
+        payment: action.payload,
       };
-    case SET_ADDRESS:
+    case SET_SELECTED_ADDRESS:
       return {
         ...state,
-        address: { ...action.payload },
+        address: action.payload,
+      };
+    case SET_INSTALLMENT:
+      return {
+        ...state,
+        installment: action.payload,
+      };
+    case SET_CART_SUBTOTAL:
+      return {
+        ...state,
+        cartSubtotal: action.payload,
+      };
+    case SET_SHIPPING_COST:
+      return {
+        ...state,
+        shippingCost: action.payload,
       };
     default:
       return state;

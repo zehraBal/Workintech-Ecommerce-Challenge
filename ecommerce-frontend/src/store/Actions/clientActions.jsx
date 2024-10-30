@@ -1,4 +1,6 @@
+import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance";
+import { toast } from "react-toastify";
 
 export const SET_USER = "SET_USER";
 export const SET_ROLES = "SET_ROLES";
@@ -43,7 +45,7 @@ export const fetchAddress = () => (dispatch) => {
     axiosInstance
       .get("/user/address", { headers: { Authorization: token } })
       .then((res) => {
-        console.log(res.data);
+        console.log("API Response:", res.data);
         dispatch(setAddress(res.data));
       })
       .catch((err) => console.log(err));
@@ -56,10 +58,16 @@ export const saveNewAddress = (address) => (dispatch) => {
     .post("/user/address", { headers: { Authorization: token } }, address)
     .then((res) => {
       // dispatch(setAddress(res.data));
-      console.log(res.data);
-      console.log("success");
+      //console.log(res.data);
+      //  console.log("success");
+      toast.success("Address saved successfully!");
+      return { success: true };
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      //console.log(err);
+      toast.warning("An error occured. Please try again!");
+      return { success: false, err };
+    });
 };
 
 export const updateAddress = (address) => (dispatch) => {
@@ -68,10 +76,16 @@ export const updateAddress = (address) => (dispatch) => {
     .put("/user/address", { headers: { Authorization: token } }, address)
     .then((res) => {
       // dispatch(setAddress(res.data));
-      console.log(res.data);
-      console.log("success");
+      // console.log(res.data);
+      //console.log("success");
+      toast.success("Address updated successfully!");
+      return { success: true };
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      //console.log(err);
+      toast.warning("An error occured while updating. Please try again!");
+      return { success: false, err };
+    });
 };
 
 export const deleteAddress = (addressId) => (dispatch) => {
@@ -82,11 +96,53 @@ export const deleteAddress = (addressId) => (dispatch) => {
     })
     .then((res) => {
       // dispatch(setAddress(res.data));
-      console.log(res.data);
+      // console.log(res.data);
       console.log("success");
     })
     .catch((err) => console.log(err));
 };
+
+export const fetchCreditCards = () => (dispatch) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    axiosInstance
+      .get("/user/card", { headers: { Authorization: token } })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setCreditCard(res.data));
+      })
+      .catch((err) => console.log(err));
+  }
+};
+export const saveCreditCard = (cardInfo) => (dispatch) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    axiosInstance
+      .post("/user/card", { headers: { Authorization: token } }, cardInfo)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.warn(err));
+  }
+};
+export const updateCreditCard = (cardInfo) => (dispatch) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    axiosInstance
+      .put("/user/card", { headers: { Authorization: token } }, cardInfo)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.warn(err));
+  }
+};
+
+export const deleteCreditCard = (cardId) => (dispatch) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    axiosInstance
+      .delete(`/user/card/:${cardId}`, { headers: { Authorization: token } })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.warn(err));
+  }
+};
+
 export const logOut = () => {
   localStorage.removeItem("token");
   sessionStorage.removeItem("token");

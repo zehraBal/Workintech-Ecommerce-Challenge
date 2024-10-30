@@ -1,19 +1,33 @@
 import { useState } from "react";
 import OrderAddressForm from "../FormComponents/OrderAddressForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteAddress } from "../../store/Actions/clientActions";
 
-export default function OrderAddress({ address, isSelected, onSelect }) {
+export default function OrderAddress({ address, onSelect, onClose }) {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+
+  const selectedAddress = useSelector((state) => state.cart.address);
+
+  const isSelected = selectedAddress?.id === address.id;
+
   const handleDelete = () => {
     dispatch(deleteAddress(address.id));
   };
-  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = (e) => {
+    if (e.target.tagName === "BUTTON") {
+      e.stopPropagation();
+      return;
+    }
+    onSelect();
+  };
+
   return (
     <div
-      onClick={onSelect}
-      className={`border rounded p-4 cursor-pointer ${
-        isSelected ? "border-orange-500" : "border-gray-300"
+      onClick={handleClick}
+      className={`rounded p-4 cursor-pointer shadow-md ${
+        isSelected ? "border-blue border-2" : "border-sec border"
       }`}
     >
       <div className="flex items-center mb-2">
@@ -21,27 +35,70 @@ export default function OrderAddress({ address, isSelected, onSelect }) {
           type="radio"
           name="selectedAddress"
           checked={isSelected}
-          onChange={onSelect}
+          onChange={() => onSelect()}
+          onClick={(e) => e.stopPropagation()}
         />
-        <h5 className="ml-2 font-semibold">{address.title}</h5>
+        <h5 className="ml-2 font-bold text-prim text-2xl">{address.title}</h5>
       </div>
+      <div className=" flex items-start flex-col">
+        <p className="text-sm text-gray-700">
+          <span className="text-base text-prim font-bold">Name: </span>
+          {address.name}{" "}
+          <span className="text-base text-prim font-bold">Surname: </span>
+          {address.surname}
+        </p>
+        <p className="text-sm text-gray-700">
+          <span className="text-base text-prim font-bold">Phone Number: </span>
+          {address.phone}
+        </p>
+        <p className="text-sm text-gray-700">
+          <span className="text-base text-prim font-bold">Neighborhood: </span>
+          {address.neighborhood}
+        </p>
+        <p className="text-sm text-gray-700">
+          <span className="text-base text-prim font-bold">District: </span>
+          {address.district}
+        </p>
+        <p className="text-sm text-gray-700">
+          <span className="text-base text-prim font-bold">City: </span>{" "}
+          {address.city}
+        </p>
+      </div>
+      <hr />
 
-      <p className="text-sm text-gray-700">
-        {address.name} {address.surname}
-      </p>
-      <p className="text-sm text-gray-700">{address.phone}</p>
-      <p className="text-sm text-gray-700">{address.neighborhood}</p>
-      <p className="text-sm text-gray-700">
-        {address.district}, {address.city}
-      </p>
-
-      <button
-        className="mt-2 text-orange-500 text-xs"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        Düzenle
-      </button>
-      <button onClick={handleDelete}> Sil</button>
+      <div className="flex justify-between items-center">
+        <button
+          className="button-sm bg-blue text-white text-xs"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen(true);
+          }}
+        >
+          Düzenle
+        </button>
+        {isOpen && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(false);
+              onClose();
+            }}
+            className="bg-[#EED202] text-white button-sm"
+          >
+            Cancel
+          </button>
+        )}
+        <button
+          className="button-sm bg-[#E74040] text-white text-xs"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDelete();
+          }}
+        >
+          Sil
+        </button>
+      </div>
+      <hr />
       {isOpen && <OrderAddressForm address={address} />}
     </div>
   );

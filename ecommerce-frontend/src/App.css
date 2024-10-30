@@ -21,17 +21,21 @@ h2 {
 
 h3 {
   font-size: 24px;
+  margin: 0;
 }
 h4 {
   font-size: 20px;
+  margin: 0;
 }
 
 h5 {
   font-size: 16px;
+  margin: 0;
 }
 
 h6 {
   font-size: 14px;
+  margin: 0;
 }
 /* General navbar styling */
 .navbar {
@@ -130,6 +134,16 @@ input:checked + .slider:before {
   width: 9px;
   height: 9px;
   border: solid #bdbdbd;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.arrow-right-white {
+  width: 9px;
+  height: 9px;
+  border: solid white;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 5px;

@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   saveNewAddress,
   updateAddress,
 } from "../../store/Actions/clientActions";
-
-export default function OrderAddressForm({ address }) {
+export default function OrderAddressForm({ address, onClose }) {
   const {
     register,
     handleSubmit,
@@ -133,8 +132,11 @@ export default function OrderAddressForm({ address }) {
       />
       {errors.neighborhood && <p>{errors.neighborhood.message}</p>}
 
-      <button className="bg-blue text-white button-primary" type="submit">
+      <button className="bg-blue text-white button-sm" type="submit">
         {address ? "Update Address" : "Submit Address"}
+      </button>
+      <button onClick={onClose} className="bg-[#EED202] text-white button-sm">
+        Cancel
       </button>
     </form>
   );

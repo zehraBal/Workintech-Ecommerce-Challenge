@@ -1,77 +1,96 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAddress } from "../../store/Actions/clientActions";
-import OrderAddress from "./OrderAddress";
-import OrderAddressForm from "../FormComponents/OrderAddressForm";
+import { useState } from "react";
+import AddressInformation from "./AddressInformation";
+import { useSelector } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
+import PaymentInformation from "./PaymentInformation";
 
 export default function OrderPageMain() {
-  const dispatch = useDispatch();
-  const userAdress = useSelector((state) => state.client.addressList);
-  const [selectedAddressId, setSelectedAddressId] = useState(null);
-  const [billingSameAsDelivery, setBillingSameAsDelivery] = useState(true);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [addressToEdit, setAddressToEdit] = useState(null); // Address data for edit mode
+  const selectedAddress = useSelector((state) => state.cart.address);
+  console.log("selectedAddress", selectedAddress);
+  const [showAddress, setShowAddress] = useState(true);
+  const [showCreditCard, setShowCreditCard] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchAddress());
-  }, [dispatch]);
-
-  const handleAddressSelect = (addressId) => {
-    setSelectedAddressId(addressId);
-  };
-
-  const handleBillingCheckbox = () => {
-    setBillingSameAsDelivery(!billingSameAsDelivery);
-  };
-
-  const toggleFormVisibility = (address = null) => {
-    setIsFormVisible(!isFormVisible);
-    setAddressToEdit(address); // Set address data for edit if provided
+  const onNext = () => {
+    setShowAddress(false);
+    setShowCreditCard(true);
   };
 
   return (
-    <section className="w-full flex justify-center items-center">
-      <div className="w-[85%] flex flex-col py-10 gap-6">
-        <h2 className="text-lg font-semibold mb-4">Adres Bilgileri</h2>
-
-        <div className="flex items-center gap-4 mb-6">
-          <input
-            type="checkbox"
-            id="billingSameAsDelivery"
-            checked={billingSameAsDelivery}
-            onChange={handleBillingCheckbox}
-          />
-          <label htmlFor="billingSameAsDelivery">
-            Faturamı Aynı Adrese Gönder
-          </label>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {userAdress.map((address) => (
-            <OrderAddress
-              key={address.id}
-              address={address}
-              isSelected={address.id === selectedAddressId}
-              onSelect={() => handleAddressSelect(address.id)}
-              onEdit={() => toggleFormVisibility(address)} // Open form in edit mode with address data
-            />
-          ))}
-
-          {/* Add new address card */}
-          <div
-            className="border-dashed border-2 border-gray-300 rounded p-4 flex items-center justify-center cursor-pointer"
-            onClick={() => toggleFormVisibility()} // Open form without data for new address
+    <section className="w-full flex items-center justify-center flex-col">
+      <div className="w-[85%] flex items-center justify-between relative">
+        <div
+          onClick={() => {
+            setShowAddress(true);
+            setShowCreditCard(false);
+          }}
+          className="flex w-1/2 border border-solid border-sec flex-col items-start h-36 p-4 cursor-pointer relative"
+        >
+          <h4
+            className={`${showAddress ? "text-blue" : "text-prim"} font-bold`}
           >
-            <span className="text-gray-500">+ Yeni Adres Ekle</span>
-          </div>
+            Address Information
+          </h4>
+          {Object.entries(selectedAddress).length !== 0 && (
+            <div>
+              <h5 className="text-prim font-bold">{selectedAddress.title}</h5>
+              <h6 className="text-sec ">
+                {selectedAddress.neighborhood}, {selectedAddress.district}/
+                {selectedAddress.city},
+              </h6>
+            </div>
+          )}
+          {showAddress && (
+            <span className="bg-blue h-2 w-full absolute bottom-0 right-0"></span>
+          )}
         </div>
 
-        {isFormVisible && <OrderAddressForm address={addressToEdit} />}
-
-        <button className="mt-6 py-2 px-4 bg-orange-500 text-white font-semibold rounded">
-          Kaydet ve Devam Et
-        </button>
+        <div
+          onClick={() => {
+            setShowCreditCard(true);
+            setShowAddress(false);
+          }}
+          className="flex w-1/2 border border-solid border-sec flex-col items-start h-36 p-4 cursor-pointer relative"
+        >
+          <h4
+            className={`${
+              showCreditCard ? "text-blue" : "text-prim"
+            } font-bold`}
+          >
+            Payment Options
+          </h4>
+          {showCreditCard && (
+            <span className="bg-blue h-2 w-full absolute bottom-0 right-0"></span>
+          )}
+        </div>
       </div>
+
+      {/* AnimatePresence ile Geçiş Animasyonu */}
+      <AnimatePresence mode="wait">
+        {showAddress && (
+          <motion.div
+            key="address"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="w-full"
+          >
+            <AddressInformation onNext={onNext} />
+          </motion.div>
+        )}
+        {showCreditCard && (
+          <motion.div
+            key="creditCard"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="w-full"
+          >
+            <PaymentInformation />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
