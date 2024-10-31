@@ -13,7 +13,6 @@ export default function CompleteOrder() {
   const subtotal = useSelector((state) => state.cart.cartSubtotal);
   const shipping = useSelector((state) => state.cart.shippingCost);
   const total = subtotal + shipping;
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -26,16 +25,12 @@ export default function CompleteOrder() {
       address_id: address.id,
       order_date: new Date().toISOString(),
       card_no: payment.card_no,
-      card_name: payment.card_name,
+      card_name: payment.name_on_card,
       card_expire_month: payment.card_expire_month,
       card_expire_year: payment.card_expire_year,
       card_ccv: ccv,
       price: total,
-      products: cartSelected.map((item) => ({
-        product_id: item.product.id,
-        count: item.count,
-        detail: `${item.product.color} - ${item.product.size}`,
-      })),
+      products: cartSelected,
     };
 
     dispatch(createOrder(orderData));

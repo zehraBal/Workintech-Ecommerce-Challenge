@@ -15,7 +15,9 @@ const initialCart = {
     : [],
   payment: {},
   address: {},
-  installment: null,
+  installment: localStorage.getItem("installmentOption")
+    ? parseFloat(localStorage.getItem("installmentOption"))
+    : 0,
   cartSubtotal: localStorage.getItem("cartSubtotal")
     ? parseFloat(localStorage.getItem("cartSubtotal"))
     : 0,
@@ -74,6 +76,7 @@ export const cartReducer = (state = initialCart, action) => {
         address: action.payload,
       };
     case SET_INSTALLMENT:
+      localStorage.setItem("installmentOption", action.payload);
       return {
         ...state,
         installment: action.payload,

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { setSelectedAddress } from "../../store/Actions/cartActions";
 
-export default function AddressInformation({ onNext }) {
+export default function AddressInformation() {
   const userAdress = useSelector((state) => state.client.addressList);
   //console.log("userAdress", userAdress);
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -30,7 +30,7 @@ export default function AddressInformation({ onNext }) {
 
   return (
     <section className="w-full flex justify-center items-center">
-      <div className="w-[85%] flex flex-col py-10 gap-6 relative">
+      <div className="w-[85%] flex flex-col py-10 gap-6">
         <h2 className="text-3xl mb-9">Address Informations</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -60,15 +60,6 @@ export default function AddressInformation({ onNext }) {
         <button className="mt-6 py-2 px-4 bg-orange-500 text-white font-semibold rounded">
           Kaydet ve Devam Et
         </button>
-
-        <div className="absolute bottom-0 right-0 ">
-          <button
-            onClick={onNext}
-            className="bg-blue text-white button-primary flex items-center"
-          >
-            Next <span className="arrow-right-white"></span>
-          </button>
-        </div>
       </div>
     </section>
   );

@@ -13,8 +13,7 @@ export default function OrderPageMain() {
   const [showCreditCard, setShowCreditCard] = useState(false);
   const navigate = useNavigate();
   const onNext = (e) => {
-    e.preventDefault(); // Prevent any default form submission
-
+    e.preventDefault();
     if (
       !selectedAddress ||
       Object.keys(selectedAddress).length === 0 ||
@@ -26,12 +25,10 @@ export default function OrderPageMain() {
     } else {
       navigate("/order/complete");
     }
-
-    // Only navigate if both are selected
   };
 
   return (
-    <section className="w-full flex items-center justify-center flex-col py-28">
+    <section className="w-full flex items-center justify-center flex-col  relative">
       <div className="w-full flex items-center justify-between relative">
         <div
           onClick={() => {
@@ -90,7 +87,7 @@ export default function OrderPageMain() {
             transition={{ duration: 0.3 }}
             className="w-full"
           >
-            <AddressInformation onNext={onNext} />
+            <AddressInformation />
           </motion.div>
         )}
         {showCreditCard && (
@@ -102,10 +99,18 @@ export default function OrderPageMain() {
             transition={{ duration: 0.3 }}
             className="w-full"
           >
-            <PaymentInformation onNext={onNext} />
+            <PaymentInformation />
           </motion.div>
         )}
       </AnimatePresence>
+      <div className="absolute bottom-0 right-0 ">
+        <button
+          onClick={onNext}
+          className="bg-blue text-white button-primary flex items-center"
+        >
+          Complete Order <span className="arrow-right-white"></span>
+        </button>
+      </div>
     </section>
   );
 }

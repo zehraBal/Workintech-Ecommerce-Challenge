@@ -39,7 +39,7 @@ export default function OrderAddressForm({ address, onClose }) {
     <form
       name="address"
       onSubmit={handleSubmit(submitAddress)}
-      className="flex flex-col items-start gap-3"
+      className="flex flex-col items-start gap-3 border border-solid border-sec p-4 rounded-md shadow-md"
     >
       <label htmlFor="title">Address Title</label>
       <input

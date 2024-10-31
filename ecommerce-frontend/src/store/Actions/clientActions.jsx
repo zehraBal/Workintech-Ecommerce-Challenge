@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 
@@ -10,6 +9,7 @@ export const SET_IS_LOGGED_IN = "SET_IS_LOGGED_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SET_ADDRESS = "SET_ADDRESS";
 export const SET_CREDIT_CARD = "SET_CREDIT_CARD";
+export const SET_PREVIOUS_ORDERS = "SET_PREVIOUS_ORDERS";
 export const setUser = (user) => ({
   type: SET_USER,
   payload: user,
@@ -39,6 +39,11 @@ export const setCreditCard = (creditCard) => ({
   type: SET_CREDIT_CARD,
   payload: creditCard,
 });
+export const setPreviousOrders = (orders) => ({
+  type: SET_PREVIOUS_ORDERS,
+  payload: orders,
+});
+
 export const fetchAddress = () => (dispatch) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -108,7 +113,7 @@ export const fetchCreditCards = () => (dispatch) => {
     axiosInstance
       .get("/user/card", { headers: { Authorization: token } })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(setCreditCard(res.data));
       })
       .catch((err) => console.log(err));
@@ -150,4 +155,16 @@ export const logOut = () => {
   return {
     type: LOG_OUT,
   };
+};
+
+export const fetchPreviousOrders = () => (dispatch) => {
+  const token = localStorage.getItem("token");
+  axiosInstance
+    .get("/order", { headers: { Authorization: token } })
+    .then((res) => {
+      dispatch(setPreviousOrders(res.data));
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    });
 };

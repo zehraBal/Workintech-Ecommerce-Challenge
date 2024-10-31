@@ -13,7 +13,7 @@ export default function Order() {
 
   return (
     <section className="flex items-center gap-9 justify-center sm:flex-col ">
-      <div className="sm:order-2 sm:w-full">
+      <div className="basis-[75%] sm:order-2 sm:basis-full py-28">
         <OrderPageMain />
       </div>
       <OrderSummaryBox />

@@ -8,38 +8,37 @@ export default function OrderSummaryBox() {
   const navigate = useNavigate();
 
   return (
-    <section className="w-1/4 flex items-center justify-center flex-col bg-[#FAFAFA] gap-9 p-4 border-2 rounded-md border-solid border-sec shadow-md sm:w-[60%]">
-      <div className="w-full flex items-start justify-center gap-4 flex-col">
-        <h5 className="text-2xl text-prim font-bold">Order Summary</h5>
-        <div className="w-full flex justify-between items-center">
-          <h6 className="text-xl text-prim font-bold">Subtotal:</h6>
-          <span className="text-xl text-prim font-bold">
-            ${subtotal.toFixed(2)}
-          </span>
+    <section className=" max-w-md  bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-gray-100 px-6 py-4">
+        <h5 className="text-2xl font-semibold text-gray-800">Order Summary</h5>
+      </div>
+      <div className="p-6 space-y-4">
+        <div className="flex justify-between items-center">
+          <span className="text-gray-600">Subtotal</span>
+          <span className="font-medium">${subtotal.toFixed(2)}</span>
         </div>
-        <div className="w-full flex justify-between items-center">
-          <h6 className="text-xl text-prim font-bold">Shipping:</h6>
-          <span className="text-xl text-prim font-bold">$29.99</span>
+        <div className="flex justify-between items-center">
+          <span className="text-gray-600">Shipping</span>
+          <span className="font-medium">$29.99</span>
         </div>
         {subtotal >= 150 && (
-          <div className="w-full flex justify-between items-center">
-            <h6 className="text-xl text-prim font-bold">
-              Free shipping <br />
-              over $150:
-            </h6>
-            <span className="text-xl text-sec font-bold">- $29.99</span>
+          <div className="flex justify-between items-center text-green-600">
+            <span>Free shipping discount</span>
+            <span>- $29.99</span>
           </div>
         )}
-        <div className="w-full flex justify-between items-center bg-sec bg-opacity-30 py-3 px-2 rounded-md">
-          <h6 className="text-xl text-prim font-bold">Total:</h6>
-          <span className="text-xl text-prim font-bold">
-            ${(shippingCost + subtotal).toFixed(2)}
-          </span>
+        <div className="border-t pt-4">
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold text-gray-800">Total</span>
+            <span className="text-lg font-semibold text-gray-800">
+              ${(shippingCost + subtotal).toFixed(2)}
+            </span>
+          </div>
         </div>
       </div>
-      <div>
+      <div className="px-6 pb-6">
         <button
-          className="button-primary bg-blue text-white"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
           onClick={() => (isLoggedIn ? navigate("/order") : navigate("/login"))}
         >
           Complete Order

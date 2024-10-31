@@ -36,9 +36,11 @@ export default function CreditCardForm({ card, onClose }) {
     <form
       name="creditCard"
       onSubmit={handleSubmit(submitCard)}
-      className="flex flex-col items-start gap-3 w-[60%] border-2 shadow-md border-sec rounded-md p-5"
+      className="flex flex-col items-start gap-3  border shadow-md border-sec rounded-md p-5"
     >
-      <label htmlFor="card_no">Card Number:</label>
+      <label className="text-prim font-bold" htmlFor="card_no">
+        Card Number:
+      </label>
       <input
         className="contact-form-input"
         id="card_no"
@@ -56,7 +58,10 @@ export default function CreditCardForm({ card, onClose }) {
 
       <div className="flex gap-4">
         <div>
-          <label className="pr-2" htmlFor="expire_month">
+          <label
+            className="mr-2 mb-2 text-prim font-bold"
+            htmlFor="expire_month"
+          >
             Expiry Month:
           </label>
           <select
@@ -78,7 +83,10 @@ export default function CreditCardForm({ card, onClose }) {
         </div>
 
         <div>
-          <label className="pr-2" htmlFor="expire_year">
+          <label
+            className="mr-2 mb-2 text-prim font-bold"
+            htmlFor="expire_year"
+          >
             Expiry Year:
           </label>
           <select
@@ -103,7 +111,9 @@ export default function CreditCardForm({ card, onClose }) {
         </div>
       </div>
 
-      <label htmlFor="name_on_card">Name on Card</label>
+      <label className="text-prim font-bold" htmlFor="name_on_card">
+        Name on Card:
+      </label>
       <input
         className="contact-form-input"
         id="name_on_card"
