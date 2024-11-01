@@ -113,7 +113,6 @@ export default function RegisterForm() {
           </p>
         )}
       </div>
-
       {/* Email Field */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
         <label htmlFor="email">Email *</label>
@@ -137,7 +136,6 @@ export default function RegisterForm() {
           </p>
         )}
       </div>
-
       {/* Password Field */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
         <label htmlFor="password">Password *</label>
@@ -155,7 +153,6 @@ export default function RegisterForm() {
           </p>
         )}
       </div>
-
       {/* Password Confirm Field */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
         <label htmlFor="passwordConfirm">Confirm Password *</label>
@@ -177,7 +174,6 @@ export default function RegisterForm() {
           </p>
         )}
       </div>
-
       {/* Role Selection */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
         <label htmlFor="role_id">Role *</label>
@@ -190,7 +186,6 @@ export default function RegisterForm() {
           <option value={1}>Store </option>
         </select>
       </div>
-
       {/* Store Fields (appear if role is "Store") */}
       {isStore && (
         <>
@@ -283,7 +278,6 @@ export default function RegisterForm() {
           </div>
         </>
       )}
-
       {/* Submit Button */}
       <button
         type="submit"
@@ -298,6 +292,11 @@ export default function RegisterForm() {
       >
         {loading ? <span className="spinner"></span> : "Submit"}
       </button>
+      <span>
+        <a className="a-gray hover:text-blue" href="/login">
+          Already a member? Login
+        </a>
+      </span>{" "}
     </form>
   );
 }

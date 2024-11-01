@@ -38,7 +38,7 @@ export default function OrderSummaryBox() {
       </div>
       <div className="px-6 pb-6">
         <button
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+          className="w-full bg-blue text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
           onClick={() => (isLoggedIn ? navigate("/order") : navigate("/login"))}
         >
           Complete Order

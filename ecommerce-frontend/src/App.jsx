@@ -80,6 +80,14 @@ function App() {
           }
         />
         <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/order"
           element={
             <ProtectedRoute>
@@ -106,7 +114,7 @@ function App() {
 
         {/* Public Routes */}
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/test" element={<Test />} />
         <Route

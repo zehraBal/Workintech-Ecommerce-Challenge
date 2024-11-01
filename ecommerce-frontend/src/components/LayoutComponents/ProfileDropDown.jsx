@@ -18,7 +18,7 @@ const ProfileDropdown = () => {
           <NavDropdown.Item onClick={() => navigate("/profile")}>
             Profile
           </NavDropdown.Item>
-          <NavDropdown.Item onClick={() => navigate("orders")}>
+          <NavDropdown.Item onClick={() => navigate("order-history")}>
             Orders
           </NavDropdown.Item>
           <NavDropdown.Item onClick={() => navigate("/favorites")}>

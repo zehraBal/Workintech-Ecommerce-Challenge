@@ -41,8 +41,11 @@ export default function HeaderNav() {
     <div className="basis-[85%] flex flex-wrap justify-center items-center sm:flex-col">
       <div className=" basis-full flex items-center justify-between py-4 sm:flex-col sm:w-full sm:basis-full sm:gap-6">
         <div className="sm:flex sm:justify-between sm:w-full sm:items-center ">
-          <div className="text-prim text-start font-bold text-2xl">
-            BrandName
+          <div
+            onClick={() => navigate("/")}
+            className="text-prim text-start font-bold text-2xl"
+          >
+            BAL
           </div>
           <div className="flex gap-6 items-center lg:hidden cursor-pointer">
             <div className="flex items-center gap-1">
@@ -51,7 +54,7 @@ export default function HeaderNav() {
                 icon={faUser}
                 style={{ color: "#3C403D" }}
               />
-              <ProfileDropdown className="m-0" />
+              {isLoggedIn && <ProfileDropdown className="m-0" />}
             </div>
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
@@ -64,7 +67,7 @@ export default function HeaderNav() {
             />
 
             <FontAwesomeIcon
-              onClick={() => navigate("/favoites")}
+              onClick={() => navigate("/favorites")}
               icon={faHeart}
               style={{ color: "#3C403D" }}
             />
