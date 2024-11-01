@@ -121,6 +121,10 @@ function App() {
           path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId"
           element={<ProductDetail />}
         />
+        <Route
+          path="/shop/:gender/:categoryName/:categoryId"
+          element={<Shop />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>

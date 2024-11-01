@@ -15,51 +15,44 @@ import {
 import { useParams } from "react-router-dom";
 
 export default function Shop() {
-  const { categoryId } = useParams();
+  const { categoryId, gender } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const offset = useSelector((state) => state.product.offset);
-  const limit = useSelector((state) => state.product.limit);
-  const filter = useSelector((state) => state.product.filter); // Get filter state
   const [hasMore, setHasMore] = useState(true);
+
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.product_list);
   const totalProducts = useSelector((state) => state.product.total);
+  const offset = useSelector((state) => state.product.offset);
+  const limit = useSelector((state) => state.product.limit);
+  const filter = useSelector((state) => state.product.filter);
 
   useEffect(() => {
-    dispatch(setOffset(0)); // offset'i sıfırla
-    dispatch(clearProductList()); // Ürün listesini temizle
-    loadMoreProducts(); // Yeni ürünleri yükle
-  }, [categoryId, filter]); // categoryId veya filter değiştiğinde tetiklenir
+    dispatch(setOffset(0));
+    dispatch(clearProductList());
+    loadMoreProducts();
+  }, [categoryId, gender, filter]);
 
   const loadMoreProducts = () => {
+    if (isLoading) return;
     setIsLoading(true);
 
-    if (categoryId || filter) {
-      // Eğer URL'de categoryId varsa, fetchProductsWithFilters kullan
-      const filterParams = { ...filter, categoryId }; // filter'a categoryId ekle
-      dispatch(fetchProductsWithFilters(limit, offset, filterParams))
-        .then(() => {
-          setIsLoading(false);
-          if (products.length >= totalProducts) {
-            setHasMore(false); // Yüklenebilecek ürün kalmadı
-          } else {
-            dispatch(setOffset(offset + limit)); // Yeni offset hesapla
-          }
-        })
-        .catch(() => setIsLoading(false));
-    } else {
-      // Eğer URL'de categoryId yoksa, tüm ürünleri getir
-      dispatch(fetchProducts(limit, offset))
-        .then(() => {
-          setIsLoading(false);
-          if (products.length >= totalProducts) {
-            setHasMore(false); // Yüklenebilecek ürün kalmadı
-          } else {
-            dispatch(setOffset(offset + limit)); // Yeni offset hesapla
-          }
-        })
-        .catch(() => setIsLoading(false));
-    }
+    const filterParams = { ...filter, categoryId, gender };
+
+    const fetchAction =
+      categoryId || filter
+        ? fetchProductsWithFilters(limit, offset, filterParams)
+        : fetchProducts(limit, offset);
+
+    dispatch(fetchAction)
+      .then(() => {
+        setIsLoading(false);
+        if (products.length + limit >= totalProducts) {
+          setHasMore(false);
+        } else {
+          dispatch(setOffset(offset + limit));
+        }
+      })
+      .catch(() => setIsLoading(false));
   };
 
   return (
@@ -67,10 +60,11 @@ export default function Shop() {
       <ShopHeader />
       <ShopCategories />
       <FilterSection />
+
       <InfiniteScroll
-        dataLength={products.length}
-        next={loadMoreProducts}
-        hasMore={hasMore}
+        dataLength={products.length} // The number of items currently loaded
+        next={loadMoreProducts} // Load more on scroll
+        hasMore={hasMore} // Check if more products are available
         endMessage={<p>No more products to load</p>}
         style={{
           width: "100%",
@@ -81,7 +75,7 @@ export default function Shop() {
           overflowY: "visible",
         }}
       >
-        <Products />
+        <Products products={products} />
       </InfiniteScroll>
 
       {!hasMore && <ClientCard />}
