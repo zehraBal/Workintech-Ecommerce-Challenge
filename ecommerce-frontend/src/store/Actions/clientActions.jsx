@@ -50,10 +50,9 @@ export const fetchAddress = () => (dispatch) => {
     axiosInstance
       .get("/user/address", { headers: { Authorization: token } })
       .then((res) => {
-        console.log("API Response:", res.data);
         dispatch(setAddress(res.data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Failed to fetch address"));
   }
 };
 
@@ -66,12 +65,10 @@ export const saveNewAddress = (address) => (dispatch) => {
       //console.log(res.data);
       //  console.log("success");
       toast.success("Address saved successfully!");
-      return { success: true };
     })
     .catch((err) => {
       //console.log(err);
-      toast.warning("An error occured. Please try again!");
-      return { success: false, err };
+      toast.error("An error occurred. Please try again!");
     });
 };
 
@@ -102,9 +99,10 @@ export const deleteAddress = (addressId) => (dispatch) => {
     .then((res) => {
       // dispatch(setAddress(res.data));
       // console.log(res.data);
-      console.log("success");
+      // console.log("success");
+      toast.success("Address deleted successfully");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => toast.error("Failed to delete address"));
 };
 
 export const fetchCreditCards = () => (dispatch) => {
@@ -116,7 +114,9 @@ export const fetchCreditCards = () => (dispatch) => {
         // console.log(res.data);
         dispatch(setCreditCard(res.data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        toast.error("Failed to fetch credit cards ", err.message)
+      );
   }
 };
 export const saveCreditCard = (cardInfo) => (dispatch) => {
@@ -124,8 +124,8 @@ export const saveCreditCard = (cardInfo) => (dispatch) => {
   if (token) {
     axiosInstance
       .post("/user/card", { headers: { Authorization: token } }, cardInfo)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.warn(err));
+      .then((res) => toast.success("Credit card saved successfully"))
+      .catch((err) => toast.error("Failed to save credit card"));
   }
 };
 export const updateCreditCard = (cardInfo) => (dispatch) => {
@@ -133,8 +133,8 @@ export const updateCreditCard = (cardInfo) => (dispatch) => {
   if (token) {
     axiosInstance
       .put("/user/card", { headers: { Authorization: token } }, cardInfo)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.warn(err));
+      .then((res) => toast.success("Credit card updated successfully"))
+      .catch((err) => toast.error("Failed to update credit card"));
   }
 };
 
@@ -143,8 +143,8 @@ export const deleteCreditCard = (cardId) => (dispatch) => {
   if (token) {
     axiosInstance
       .delete(`/user/card/:${cardId}`, { headers: { Authorization: token } })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.warn(err));
+      .then((res) => toast.success("Credit card deleted successfully"))
+      .catch((err) => toast.error("Failed to delete credit card"));
   }
 };
 
@@ -162,9 +162,11 @@ export const fetchPreviousOrders = () => (dispatch) => {
   axiosInstance
     .get("/order", { headers: { Authorization: token } })
     .then((res) => {
+      toast.success("Previous orders fetched successfully");
+
       dispatch(setPreviousOrders(res.data));
     })
     .catch((err) => {
-      toast.error(err.message);
+      toast.error("Failed to fetch previous orders: " + err.message);
     });
 };

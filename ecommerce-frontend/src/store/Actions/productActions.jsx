@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
 export const SET_PRODUCT_BY_ID = "SET_PRODUCT_BY_ID";
 export const SET_CATEGORIES = "SET_CATEGORIES";
@@ -50,27 +51,25 @@ export const setBestSellers = (bestSellers) => ({
   type: SET_BEST_SELLERS,
   payload: bestSellers,
 });
-// Action'ları import ediyoruz
 
-export const fetchProducts = (limit, offset) => {
-  return async (dispatch) => {
-    dispatch(setFetchState("FETCHING")); // Fetch durumu başlatıldı
-
-    try {
-      const response = await axiosInstance // Axios isteğini buradan döndür
-        .get(`/products?limit=${limit}&offset=${offset}`);
+export const fetchProducts = (limit, offset) => (dispatch) => {
+  dispatch(setFetchState("FETCHING"));
+  return axiosInstance
+    .get(`/products?limit=${limit}&offset=${offset}`)
+    .then((response) => {
       const data = response.data;
-      //console.log(data.products);
-      // console.log(data.total);
-      dispatch(setProductList(data.products)); // Ürünleri kaydet
-      dispatch(setTotal(data.total)); // Toplam sayıyı kaydet
-      dispatch(setFetchState("FETCHED")); // Başarılı duruma geç*/
-    } catch (error) {
-      dispatch(setFetchState("ERROR")); // Hata durumuna geç
-      console.error("Error fetching products: ", error);
-    }
-  };
+      dispatch(setProductList(data.products));
+      dispatch(setTotal(data.total));
+      dispatch(setFetchState("FETCHED"));
+      return data;
+    })
+    .catch((error) => {
+      dispatch(setFetchState("ERROR"));
+      toast.error("Failed to fetch products: " + error.message);
+      throw error;
+    });
 };
+
 export const fetchProductsWithFilters = (limit, offset, filters) => {
   return async (dispatch) => {
     dispatch(setFetchState("FETCHING")); // Fetch durumu başlatıldı
@@ -98,53 +97,23 @@ export const fetchProductsWithFilters = (limit, offset, filters) => {
       dispatch(setFetchState("FETCHED")); // Başarılı duruma geç
     } catch (error) {
       dispatch(setFetchState("ERROR")); // Hata durumuna geç
-      console.error("Error fetching products with filters: ", error);
+      toast.error("Failed to fetch filtered products: " + error.message);
     }
   };
 };
 
-export const fetchProductsOld = (limit, offset, filter) => {
+export const fetchCategories = () => {
   return async (dispatch) => {
     dispatch(setFetchState("FETCHING"));
 
     try {
-      const { categoryId, sort, search } = filter;
-      let url = `/products?limit=${limit}&offset=${offset}`;
-
-      if (categoryId) {
-        url += `&category=${categoryId}`;
-      }
-      if (search) {
-        url += `&filter=${search}`;
-      }
-      if (sort) {
-        url += `&sort=${sort}`;
-      }
-      const response = await axiosInstance.get(url);
+      const response = await axiosInstance.get("/categories");
       const data = response.data;
-
-      dispatch(setProductList(data.products));
-      dispatch(setTotal(data.total));
+      dispatch(setCategories(data));
       dispatch(setFetchState("FETCHED"));
     } catch (error) {
       dispatch(setFetchState("ERROR"));
-      console.error("Error fetching products: ", error);
-    }
-  };
-};
-export const fetchCategories = () => {
-  return async (dispatch) => {
-    dispatch(setFetchState("FETCHING")); // Fetch durumu başlatıldı
-
-    try {
-      const response = await axiosInstance // Axios isteğini buradan döndür
-        .get("/categories");
-      const data = response.data;
-      dispatch(setCategories(data)); // Ürünleri kaydet
-      dispatch(setFetchState("FETCHED")); // Başarılı duruma geç*/
-    } catch (error) {
-      dispatch(setFetchState("ERROR")); // Hata durumuna geç
-      console.error("Error fetching products: ", error);
+      toast.error("Failed to fetch categories: " + error.message);
     }
   };
 };
@@ -169,7 +138,7 @@ export const fetchTopProducts = (
       })
       .catch((error) => {
         dispatch(setFetchState("ERROR")); // Hata durumuna geç
-        console.error("Error fetching products: ", error);
+        toast.error("Failed to fetch top products: " + error.message);
       });
   };
 };
@@ -181,7 +150,7 @@ export const fetchProductById = (productId) => async (dispatch) => {
     dispatch(setProductById(response.data));
     dispatch(setFetchState("FETCHED"));
   } catch (error) {
-    spatch(setFetchState("ERROR")); // Hata durumuna geç
-    console.error("Error fetching products: ", error);
+    dispatch(setFetchState("ERROR"));
+    toast.error("Failed to fetch product details: " + error.message);
   }
 };

@@ -29,6 +29,7 @@ export default function Shop() {
   useEffect(() => {
     dispatch(setOffset(0));
     dispatch(clearProductList());
+    setHasMore(true); // Reset `hasMore` when new filter/category applied
     loadMoreProducts();
   }, [categoryId, gender, filter]);
 
@@ -37,7 +38,6 @@ export default function Shop() {
     setIsLoading(true);
 
     const filterParams = { ...filter, categoryId, gender };
-
     const fetchAction =
       categoryId || filter
         ? fetchProductsWithFilters(limit, offset, filterParams)
@@ -49,6 +49,7 @@ export default function Shop() {
         if (products.length + limit >= totalProducts) {
           setHasMore(false);
         } else {
+          setHasMore(true);
           dispatch(setOffset(offset + limit));
         }
       })
@@ -56,15 +57,15 @@ export default function Shop() {
   };
 
   return (
-    <section className="w-full flex flex-col items-center justify-center">
+    <section className="w-full flex flex-col items-center justify-center min-h-screen">
       <ShopHeader />
       <ShopCategories />
       <FilterSection />
 
       <InfiniteScroll
-        dataLength={products.length} // The number of items currently loaded
-        next={loadMoreProducts} // Load more on scroll
-        hasMore={hasMore} // Check if more products are available
+        dataLength={products.length}
+        next={loadMoreProducts}
+        hasMore={hasMore}
         endMessage={<p>No more products to load</p>}
         style={{
           width: "100%",
@@ -72,12 +73,12 @@ export default function Shop() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "100vh", // Ensure enough height for scroll
           overflowY: "visible",
         }}
       >
         <Products products={products} />
       </InfiniteScroll>
-
       {!hasMore && <ClientCard />}
     </section>
   );
