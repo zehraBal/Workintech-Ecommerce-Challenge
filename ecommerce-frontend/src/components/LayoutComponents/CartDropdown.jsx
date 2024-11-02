@@ -29,7 +29,7 @@ export default function CartDropdown() {
 
   return (
     <Dropdown show={dropdownOpen} onToggle={toggleDropdown} ref={dropdownRef}>
-      <DropdownToggle data-toggle="dropdown" tag="span"></DropdownToggle>
+      <DropdownToggle variant="link" id="dropdown-basic"></DropdownToggle>
       <DropdownMenu>
         <div className="w-full flex items-center flex-col gap-4 py-10 px-4">
           {cart.map((item, index) => (

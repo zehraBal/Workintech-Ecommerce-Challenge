@@ -52,7 +52,7 @@ export default function Header() {
           </div>
         </div>
       )}
-      {isInnerPage ? <HeaderInnerNav /> : <HeaderNav />}
+      <HeaderNav />
     </header>
   );
 }

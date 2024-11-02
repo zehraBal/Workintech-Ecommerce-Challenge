@@ -6,7 +6,6 @@ const ShopDropdown = () => {
   const navigate = useNavigate();
 
   const handleCategoryClick = (gender, categoryName, categoryId) => {
-    // Navigate to the shop page with category details
     navigate(`/shop/${gender}/${categoryName}/${categoryId}`);
   };
 

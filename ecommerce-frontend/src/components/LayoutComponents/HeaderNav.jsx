@@ -14,6 +14,7 @@ import ProfileDropdown from "./ProfileDropDown";
 import { useNavigate } from "react-router-dom";
 import CartDropdown from "./CartDropdown";
 import Test from "../../pages/Test";
+import PagesDropdown from "./PagesDropdown";
 
 export default function HeaderNav() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function HeaderNav() {
   useEffect(() => {
     if (isLoggedIn) {
       const emailHash = md5(user.email.trim().toLowerCase());
-      const gravatarLink = "https://www.gravatar.com/avatar/${emailHash}?s=200";
+      const gravatarLink = `https://www.gravatar.com/avatar/${emailHash}?s=200`;
       setGravatarUrl(gravatarLink);
     }
   }, [dispatch]);
@@ -43,18 +44,17 @@ export default function HeaderNav() {
         <div className="sm:flex sm:justify-between sm:w-full sm:items-center ">
           <div
             onClick={() => navigate("/")}
-            className="text-prim text-start font-bold text-2xl"
+            className="text-prim text-start font-bold text-2xl cursor-pointer"
           >
             BAL
           </div>
           <div className="flex gap-6 items-center lg:hidden cursor-pointer">
             <div className="flex items-center gap-1">
-              <FontAwesomeIcon
-                onClick={() => navigate("/profile")}
-                icon={faUser}
-                style={{ color: "#3C403D" }}
-              />
-              {isLoggedIn && <ProfileDropdown className="m-0" />}
+              {isLoggedIn ? (
+                <ProfileDropdown className="m-0" />
+              ) : (
+                <FontAwesomeIcon icon={faUser} className="text-[#3C403D]" />
+              )}
             </div>
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
@@ -104,9 +104,10 @@ export default function HeaderNav() {
           <a className="a-gray font-bold  leading-6" href="/contact">
             Contact
           </a>
-          <a className="a-gray font-bold  leading-6" href="/pages">
-            Pages
-          </a>
+          <div className="flex gap-1 mt-2">
+            <h5 className="font-bold text-sec leading-6 text-base">Pages</h5>
+            <PagesDropdown />
+          </div>
         </nav>
 
         {/* Kullanıcı giriş yaptıysa kullanıcı bilgilerini ve Gravatar resmini göster */}
@@ -147,17 +148,8 @@ export default function HeaderNav() {
                 Welcome,
                 <br /> {user.name}!
               </span>
-              <a
-                href="/profile"
-                className="text-blue font-bold flex items-center  gap-1"
-              >
-                <FontAwesomeIcon
-                  size="lg"
-                  icon={faUser}
-                  style={{ color: "#23A6F0" }}
-                />
-                <ProfileDropdown />
-              </a>
+
+              <ProfileDropdown />
             </div>
           ) : (
             <div className="flex items-center gap-[5px] justify-between sm:flex-col sm:gap-6">

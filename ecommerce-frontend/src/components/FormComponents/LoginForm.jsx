@@ -72,7 +72,11 @@ export default function LoginForm() {
           <h2>Login</h2>
         </div>
         <div className="w-3/5 flex flex-col gap-2">
-          <label className="text-[#252B42] text-lg font-bold" htmlFor="email">
+          <label
+            className="text-[#252B42] text-lg font-bold"
+            htmlFor="email"
+            id="email"
+          >
             Email Address*
           </label>
 
@@ -94,6 +98,7 @@ export default function LoginForm() {
           <label
             className="text-[#252B42] text-lg font-bold"
             htmlFor="password"
+            id="password"
           >
             Password
           </label>
@@ -118,7 +123,11 @@ export default function LoginForm() {
             name="rememberMe"
             {...register("rememberMe")}
           />
-          <label className="text-blue text-lg font-bold" htmlFor="rememberMe">
+          <label
+            className="text-blue text-lg font-bold"
+            htmlFor="rememberMe"
+            id="rememberMe"
+          >
             Remember me
           </label>
         </div>

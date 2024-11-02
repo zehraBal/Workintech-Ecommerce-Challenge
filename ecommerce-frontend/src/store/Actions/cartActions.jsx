@@ -57,7 +57,7 @@ export const createOrder = (orderData) => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.error("Order creation failed:", err);
+      // console.error("Order creation failed:", err);
       toast.error("Failed to create order. Please try again.");
       window.location.href = "/order";
     });

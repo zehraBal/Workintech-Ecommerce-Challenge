@@ -87,7 +87,9 @@ export default function RegisterForm() {
     >
       {/* Name Field */}
       <div className="w-1/2 flex flex-col items-start justify-between gap-2">
-        <label htmlFor="name">Name *</label>
+        <label htmlFor="name" id="name">
+          Name *
+        </label>
         <input
           {...register("name", {
             required: "Name is required",
@@ -109,7 +111,9 @@ export default function RegisterForm() {
       </div>
       {/* Email Field */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
-        <label htmlFor="email">Email *</label>
+        <label htmlFor="email" id="email">
+          Email *
+        </label>
         <input
           {...register("email", {
             required: "Email is required",
@@ -132,7 +136,9 @@ export default function RegisterForm() {
       </div>
       {/* Password Field */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
-        <label htmlFor="password">Password *</label>
+        <label htmlFor="password" id="password">
+          Password *
+        </label>
         <input
           {...register("password", passwordPattern)}
           className="contact-form-input w-full"
@@ -149,7 +155,9 @@ export default function RegisterForm() {
       </div>
       {/* Password Confirm Field */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
-        <label htmlFor="passwordConfirm">Confirm Password *</label>
+        <label htmlFor="passwordConfirm" id="passwordConfirm">
+          Confirm Password *
+        </label>
         <input
           {...register("passwordConfirm", {
             required: "Please confirm your password",
@@ -170,7 +178,9 @@ export default function RegisterForm() {
       </div>
       {/* Role Selection */}
       <div className="flex flex-col items-start justify-between gap-2 w-1/2">
-        <label htmlFor="role_id">Role *</label>
+        <label htmlFor="role_id" id="role_id">
+          Role *
+        </label>
         <select
           {...register("role_id", { required: true })}
           className="contact-form-input w-full"
@@ -184,7 +194,9 @@ export default function RegisterForm() {
       {isStore && (
         <>
           <div className="w-1/2 flex flex-col items-start justify-between gap-2">
-            <label htmlFor="storeName">Store Name *</label>
+            <label htmlFor="storeName" id="storeName">
+              Store Name *
+            </label>
             <input
               {...register("store.name", {
                 required: "Store name is required",
@@ -206,7 +218,9 @@ export default function RegisterForm() {
           </div>
 
           <div className="w-1/2 flex flex-col items-start justify-between gap-2">
-            <label htmlFor="storePhone">Store Phone *</label>
+            <label htmlFor="storePhone" id="storePhone">
+              Store Phone *
+            </label>
             <input
               {...register("store.phone", {
                 required: "Store phone is required",
@@ -228,7 +242,9 @@ export default function RegisterForm() {
           </div>
 
           <div className=" w-1/2 flex flex-col items-start justify-between gap-2">
-            <label htmlFor="tax_no">Store Tax ID *</label>
+            <label htmlFor="tax_no" id="tax_no">
+              Store Tax ID *
+            </label>
             <input
               {...register("store.tax_no", {
                 required: "Tax ID is required",
@@ -250,7 +266,9 @@ export default function RegisterForm() {
           </div>
 
           <div className="flex flex-col items-start justify-between gap-2 w-1/2">
-            <label htmlFor="bank_account">Store Bank Account *</label>
+            <label htmlFor="bank_account" id="bank_account">
+              Store Bank Account *
+            </label>
             <input
               {...register("store.bank_account", {
                 required: "Bank account is required",

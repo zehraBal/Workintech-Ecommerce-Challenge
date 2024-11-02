@@ -15,7 +15,7 @@ export default function ProductDetailCard({ product }) {
 
   const handleCartClick = () => {
     dispatch(setCart({ count: 1, checked: true, product: product }));
-    console.log("product added to cart");
+    //  console.log("product added to cart");
     toast.success("Product added to cart!");
   };
   const stars = Array(5).fill(0);
