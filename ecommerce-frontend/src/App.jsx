@@ -25,6 +25,7 @@ import Order from "./pages/Order";
 import CompleteOrder from "./components/OrderComponents/CompleteOrder";
 import OrderHistory from "./components/AccountComponents/OrderHistory";
 import ProtectedRoute from "./components/LayoutComponents/ProtectedRoute";
+import UserProfile from "./components/AccountComponents/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -83,7 +84,7 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <Cart />
+              <UserProfile />
             </ProtectedRoute>
           }
         />

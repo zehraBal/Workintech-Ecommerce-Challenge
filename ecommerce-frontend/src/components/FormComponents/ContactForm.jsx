@@ -18,15 +18,18 @@ export default function Contactform() {
     mode: "all",
   });
 
+  {
+    /*I used login endpoint but this is not the right endpoint*/
+  }
   const onSubmit = (formData) => {
     axios
       .post("https://reqres.in/api/login", formData)
       .then((res) => {
         toast.success("We will get back to you as soon as possible.");
-        console.log(res);
+        //  console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         toast.warning(
           "An error occurred while trying to book an appointment. Please try again!"
         );

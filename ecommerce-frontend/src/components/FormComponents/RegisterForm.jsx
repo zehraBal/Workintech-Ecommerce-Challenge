@@ -3,11 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-// Axios instance with baseURL
-const axiosInstance = axios.create({
-  baseURL: "https://workintech-fe-ecommerce.onrender.com",
-});
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function RegisterForm() {
   const {
@@ -21,7 +17,7 @@ export default function RegisterForm() {
       email: "",
       password: "",
       passwordConfirm: "",
-      role_id: "0", // Default is customer
+      role_id: "0",
       store: {
         name: "",
         phone: "",
@@ -35,7 +31,7 @@ export default function RegisterForm() {
   const [isStore, setIsStore] = useState(false);
   const watchRole = watch("role_id");
   const watchPassword = watch("password");
-  const [loading, setLoading] = useState(false); // Spinner kontrolü için loading durumu
+  const [loading, setLoading] = useState(false);
 
   /* // Fetch roles from the API
   useEffect(() => {
@@ -44,12 +40,10 @@ export default function RegisterForm() {
     });
   }, []);*/
 
-  // Show store fields if "Store" is selected
   useEffect(() => {
-    setIsStore(watchRole === "1"); // Assume role_id 2 is store
+    setIsStore(watchRole === "1");
   }, [watchRole]);
 
-  // Password validation pattern
   const passwordPattern = {
     minLength: {
       value: 8,
@@ -64,24 +58,24 @@ export default function RegisterForm() {
   };
 
   const onSubmit = (formData) => {
-    setLoading(true); // Form gönderilirken spinner başlasın
+    setLoading(true);
     axiosInstance
       .post("/signup", formData)
       .then((res) => {
-        setLoading(false); // Başarılı yanıt geldiğinde spinner dursun
+        setLoading(false);
         toast.success(
           "You need to click the link in the email to activate your account!"
         );
         if (window.history.length > 1) {
           navigate(-1); // Bir önceki sayfaya yönlendirme
         } else {
-          navigate("/"); // Ana sayfaya yönlendirme
+          navigate("/");
         }
-        console.log(res);
+        //  console.log(res);
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
+        //  console.log(err);
         toast.error("An error occurred while registering. Please try again!");
       });
   };

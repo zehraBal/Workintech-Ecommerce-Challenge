@@ -21,7 +21,7 @@ export default function HeaderNav() {
   const user = useSelector((state) => state.client.user);
   const [isHidden, setIsHidden] = useState(true);
   const [gravatarUrl, setGravatarUrl] = useState("");
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     if (isLoggedIn) {
       const emailHash = md5(user.email.trim().toLowerCase());
@@ -36,7 +36,7 @@ export default function HeaderNav() {
   };
   const navigate = useNavigate();
 
-  console.log("Is logged in:", isLoggedIn);
+  //console.log("Is logged in:", isLoggedIn);
   return (
     <div className="basis-[85%] flex flex-wrap justify-center items-center sm:flex-col">
       <div className=" basis-full flex items-center justify-between py-4 sm:flex-col sm:w-full sm:basis-full sm:gap-6">

@@ -11,7 +11,7 @@ export default function OrderHistory() {
   useEffect(() => {
     dispatch(fetchPreviousOrders());
   }, [dispatch]);
-  console.log(previousOrders);
+  // console.log(previousOrders);
 
   return (
     <section className="flex items-center justify-center">

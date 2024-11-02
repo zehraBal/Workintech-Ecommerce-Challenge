@@ -12,7 +12,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    control, // control'ü ekliyoruz
+    control,
   } = useForm({
     defaultValues: { email: "", password: "", rememberMe: false },
     mode: "all",
@@ -20,46 +20,42 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
 
-  // rememberMe checkbox'ının değerini izleyelim
   const rememberMe = useWatch({
-    control, // useWatch için control'ü belirtiyoruz
+    control,
     name: "rememberMe",
-    defaultValue: false, // varsayılan değer false
+    defaultValue: false,
   });
 
   const onSubmit = (formData) => {
     axios
       .post("https://workintech-fe-ecommerce.onrender.com/login", formData)
       .then((res) => {
-        console.log("success");
-        console.log("res data", res.data);
+        // console.log("success");
+        // console.log("res data", res.data);
 
         const token = res.data.token;
 
-        // rememberMe'ye göre token'ı localStorage veya sessionStorage'a kaydet
         if (rememberMe) {
           localStorage.setItem("token", token);
         } else {
           sessionStorage.setItem("token", token);
         }
 
-        // Redux ile kullanıcı bilgilerini güncelle
         dispatch(setUser(res.data));
         dispatch(setIsLoggedIn(true));
 
         toast.success("Login successful!");
 
-        // 2 saniye bekledikten sonra yönlendirme yap
         setTimeout(() => {
           if (window.history.length > 1) {
-            navigate(-1); // Bir önceki sayfaya yönlendirme
+            navigate(-1);
           } else {
-            navigate("/"); // Ana sayfaya yönlendirme
+            navigate("/");
           }
-        }, 2000); // 2 saniye gecikme
+        }, 2000);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
         toast.warning(
           "An error occurred while trying to login. Please try again!"
         );
@@ -120,7 +116,7 @@ export default function LoginForm() {
             type="checkbox"
             id="rememberMe"
             name="rememberMe"
-            {...register("rememberMe")} // register kullanılarak checkbox kontrol ediliyor
+            {...register("rememberMe")}
           />
           <label className="text-blue text-lg font-bold" htmlFor="rememberMe">
             Remember me
