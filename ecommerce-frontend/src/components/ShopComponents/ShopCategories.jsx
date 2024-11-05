@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import CategoryCard from "./CategoryCard";
 import { useEffect, useState } from "react";
 import { fetchCategories } from "../../store/Actions/productActions";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 
 export default function ShopCategories() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.product.categories);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function ShopCategories() {
       {isLoading ? (
         <span className="spinner"></span> // Show loading spinner if categories are being fetched
       ) : (
-        <div className="w-[85%] flex items-center justify-between flex-wrap sm:flex-col sm:gap-5">
+        <div className="w-[85%] flex items-center justify-between flex-wrap sm:flex-col sm:gap-5 space-y-4">
           {topCategories.map((c) => {
             const title = c.title.toUpperCase();
             return (

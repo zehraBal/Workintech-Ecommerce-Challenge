@@ -1,85 +1,132 @@
-import ShopHeader from "../components/ShopComponents/ShopHeader";
-import ShopCategories from "../components/ShopComponents/ShopCategories";
-import Products from "../components/ShopComponents/Products";
-import ClientCard from "../components/LayoutComponents/ClientCard";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FilterSection from "../components/ShopComponents/FilterSection";
+import { useParams } from "react-router-dom";
+import ProductCard from "../components/LayoutComponents/ProductCard";
+import ClientCard from "../components/LayoutComponents/ClientCard";
 import {
   fetchProducts,
   fetchProductsWithFilters,
   setOffset,
   clearProductList,
 } from "../store/Actions/productActions";
-import { useParams } from "react-router-dom";
-
+import BreadCrumbs from "../components/LayoutComponents/BreadCrumbs";
+import ShopCategories from "../components/ShopComponents/ShopCategories";
+import FilterSection from "../components/ShopComponents/FilterSection";
 export default function Shop() {
   const { categoryId, gender } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.product_list);
   const totalProducts = useSelector((state) => state.product.total);
-  const offset = useSelector((state) => state.product.offset);
   const limit = useSelector((state) => state.product.limit);
   const filter = useSelector((state) => state.product.filter);
 
+  const totalPages = Math.ceil(totalProducts / limit);
+
   useEffect(() => {
-    dispatch(setOffset(0));
-    dispatch(clearProductList());
-    setHasMore(true); // Reset `hasMore` when new filter/category applied
-    loadMoreProducts();
-  }, [categoryId, gender, filter]);
+    const fetchData = async () => {
+      setIsLoading(true);
+      dispatch(clearProductList());
 
-  const loadMoreProducts = () => {
-    if (isLoading) return;
-    setIsLoading(true);
+      const offset = (currentPage - 1) * limit;
+      dispatch(setOffset(offset));
 
-    const filterParams = { ...filter, categoryId, gender };
-    const fetchAction =
-      categoryId || filter
-        ? fetchProductsWithFilters(limit, offset, filterParams)
-        : fetchProducts(limit, offset);
+      const filterParams = { ...filter, categoryId, gender };
+      const fetchAction =
+        categoryId || filter
+          ? fetchProductsWithFilters(limit, offset, filterParams)
+          : fetchProducts(limit, offset);
 
-    dispatch(fetchAction)
-      .then(() => {
+      try {
+        await dispatch(fetchAction);
+      } catch (error) {
+        console.error(error);
+      } finally {
         setIsLoading(false);
-        if (products.length + limit >= totalProducts) {
-          setHasMore(false);
-        } else {
-          setHasMore(true);
-          dispatch(setOffset(offset + limit));
-        }
-      })
-      .catch(() => setIsLoading(false));
+      }
+    };
+
+    fetchData();
+  }, [dispatch, currentPage, limit, filter, categoryId, gender]);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+  const renderPagination = () => {
+    let pageNumbers = [];
+    let leftSide = currentPage - 2;
+    let rightSide = currentPage + 2;
+
+    if (leftSide <= 0) leftSide = 1;
+    if (rightSide > totalPages) rightSide = totalPages;
+
+    for (let i = leftSide; i <= rightSide; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          className={`px-4 py-2 mx-1 rounded-md transition-colors duration-300 ${
+            currentPage === i
+              ? "bg-blue text-white"
+              : "bg-sec text-prim hover:bg-blue hover:text-white"
+          }`}
+        >
+          {i}
+        </button>
+      );
+    }
+    return (
+      <div className="flex justify-center items-center mt-8">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mx-1 bg-sec text-prim rounded-md disabled:opacity-50 hover:bg-blue hover:text-white transition-colors duration-300"
+        >
+          Previous
+        </button>
+
+        {leftSide > 1 && <span className="mx-2">...</span>}
+
+        {pageNumbers}
+
+        {rightSide < totalPages && <span className="mx-2">...</span>}
+
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 mx-1 bg-sec   text-prim rounded-md disabled:opacity-50 hover:bg-blue hover:text-white transition-colors duration-300"
+        >
+          Next
+        </button>
+      </div>
+    );
   };
 
   return (
     <section className="w-full flex flex-col items-center justify-center min-h-screen">
-      <ShopHeader />
+      <div className="w-[85%] flex justify-between items-center flex-wrap py-5">
+        <h2 className="text-prim font-bold">Shop</h2>
+        <BreadCrumbs name={"Shop"} address={"/shop"} />
+      </div>
       <ShopCategories />
       <FilterSection />
-
-      <InfiniteScroll
-        dataLength={products.length}
-        next={loadMoreProducts}
-        hasMore={hasMore}
-        endMessage={<p>No more products to load</p>}
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "100vh", // Ensure enough height for scroll
-          overflowY: "visible",
-        }}
-      >
-        <Products products={products} />
-      </InfiniteScroll>
-      {!hasMore && <ClientCard />}
+      <div className="w-[85%] flex gap-12 items-center justify-center flex-wrap py-12">
+        {products.map((p) => (
+          <ProductCard
+            key={p.id}
+            category_id={p.category_id}
+            description={p.description}
+            images={p.images}
+            name={p.name}
+            price={p.price}
+            product_id={p.id}
+          />
+        ))}
+      </div>
+      {isLoading ? <span className="bigSpinner"></span> : renderPagination()}
+      <ClientCard />
     </section>
   );
 }

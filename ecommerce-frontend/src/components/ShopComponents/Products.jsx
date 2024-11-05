@@ -1,9 +1,7 @@
 import ProductCard from "../LayoutComponents/ProductCard";
 import { useSelector } from "react-redux";
 
-export default function Products() {
-  const products = useSelector((state) => state.product.product_list);
-
+export default function Products({ products }) {
   return (
     <div className="w-[85%] flex gap-12 items-center justify-center flex-wrap py-12">
       {products.map((p) => (
