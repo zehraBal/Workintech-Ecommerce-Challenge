@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   Carousel,
   CarouselItem,
@@ -18,6 +19,7 @@ const items = [
 ];
 
 export default function HomeCarousel(args) {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -68,7 +70,10 @@ export default function HomeCarousel(args) {
                 </h4>
               </div>
               <div className="flex justify-start">
-                <button className="bg-[#2DC071] font-bold text-2xl text-white py-2 px-6 rounded">
+                <button
+                  onClick={() => navigate("/shop")}
+                  className="bg-[#2DC071] font-bold text-2xl text-white py-2 px-6 rounded"
+                >
                   SHOP NOW
                 </button>
               </div>

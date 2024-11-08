@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Carousel,
   CarouselItem,
@@ -7,6 +8,7 @@ import {
 } from "reactstrap";
 
 function HomeCarouselBottom(args) {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -77,7 +79,10 @@ function HomeCarouselBottom(args) {
               <h5 className="text-white font-bold text-2xl m-0 p-0">
                 {slide.price}
               </h5>
-              <button className="bg-[#2DC071] font-bold text-2xl text-white py-2 px-6 rounded">
+              <button
+                onCLick={() => navigate("/shop")}
+                className="bg-[#2DC071] font-bold text-2xl text-white py-2 px-6 rounded"
+              >
                 ADD TO CART
               </button>
             </div>
