@@ -104,7 +104,7 @@ export default function RegisterForm() {
           id="name"
         />
         {errors.name && (
-          <p role="alert" className="text-[#23A6F0]">
+          <p role="alert" className="text-blue">
             {errors.name.message}
           </p>
         )}
@@ -129,7 +129,7 @@ export default function RegisterForm() {
           placeholder="Email"
         />
         {errors.email && (
-          <p role="alert" className="text-[#23A6F0]">
+          <p role="alert" className="text-blue">
             {errors.email.message}
           </p>
         )}
@@ -148,7 +148,7 @@ export default function RegisterForm() {
           placeholder="Your password"
         />
         {errors.password && (
-          <p role="alert" className="text-[#23A6F0]">
+          <p role="alert" className="text-blue">
             {errors.password.message}
           </p>
         )}
@@ -171,7 +171,7 @@ export default function RegisterForm() {
           placeholder="Confirm password"
         />
         {errors.passwordConfirm && (
-          <p role="alert" className="text-[#23A6F0]">
+          <p role="alert" className="text-blue">
             {errors.passwordConfirm.message}
           </p>
         )}
@@ -211,7 +211,7 @@ export default function RegisterForm() {
               id="storeName"
             />
             {errors.store?.name && (
-              <p role="alert" className="text-[#23A6F0]">
+              <p role="alert" className="text-blue">
                 {errors.store.name.message}
               </p>
             )}
@@ -235,7 +235,7 @@ export default function RegisterForm() {
               id="storePhone"
             />
             {errors.store?.phone && (
-              <p role="alert" className="text-[#23A6F0]">
+              <p role="alert" className="text-blue">
                 {errors.store.phone.message}
               </p>
             )}
@@ -259,7 +259,7 @@ export default function RegisterForm() {
               id="tax_no"
             />
             {errors.store?.tax_no && (
-              <p role="alert" className="text-[#23A6F0]">
+              <p role="alert" className="text-blue">
                 {errors.store.tax_no.message}
               </p>
             )}
@@ -283,7 +283,7 @@ export default function RegisterForm() {
               id="bank_account"
             />
             {errors.store?.bank_account && (
-              <p role="alert" className="text-[#23A6F0]">
+              <p role="alert" className="text-blue">
                 {errors.store.bank_account.message}
               </p>
             )}
@@ -294,11 +294,11 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={!isValid || loading}
-        className={`button-primary leading-[22px] text-white relative
+        className={`button-primary  bg-blue leading-[22px] text-white relative
             ${
               isValid
-                ? "bg-[#23A6F0] hover:bg-[#1e90ff]"
-                : "bg-gray-400 hover:bg-gray-400 cursor-not-allowed"
+                ? "bg-blue hover:bg-[#1e90ff]"
+                : "bg-sec cursor-not-allowed"
             }
           `}
       >
