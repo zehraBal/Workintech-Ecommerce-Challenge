@@ -162,7 +162,7 @@ export default function HeaderNav() {
               </a>
               <a
                 className="text-blue no-underline font-bold  leading-6 hover:text-[16px]"
-                href="/signup"
+                href="/register"
               >
                 Register
               </a>
